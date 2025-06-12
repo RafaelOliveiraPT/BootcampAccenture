@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+
+    <div class="row">
+        <div class="col d-flex justify-content-center mt-3">
+            <img style="width: 443px; height: 95px;" src="https://www.upacademy.pt/media/UP-Academy-Logo-Retina-Website.png"
+                alt="Logo Up Academy">
+        </div>
+    </div>
+
+    <div class="titulo">
+        <h3 style="text-align: center; margin-top: 10px;"> 1ºForm Bootstrap</h3>
+    </div>
+
+    <form>
+            <!-- Email -->
+            <div class="row mb-3">
+                <div class="col-1 d-flex align-items-center">
+                    <label  style="text-align: left;" for="InputEmail" class="form-label">Email: </label>
+                </div>
+                <div class="col-11 ">
+                    <input type="email" class="form-control " id="InputEmail" placeholder="Your email" required>
+                </div>
+            </div>
+
+            <!-- Address -->
+             <div class="row mb-3">
+                <div class="col-1 d-flex align-items-center">
+                <label style="text-align: left;" for="InputAddress" class="form-label">Address: </label>
+                </div>
+                <div class="col-11 ">
+                <input type="text" class="form-control " id="InputAddress" placeholder="Address" required>
+                </div>
+            </div>
+
+
+            <!-- Name -->
+              <div class="row mb-3">
+                <div class="col-1 d-flex align-items-center">
+                    <label style="text-align: left;" for="InputName" class="form-label">Name: </label>
+                </div>
+                <div class="col-11 ">
+                <input type="text" class="form-control " id="InputName" placeholder="Name" required>
+                </div>
+            </div>
+
+            <!-- Number -->
+              <div class="row mb-3">
+                <div class="col-1 d-flex align-items-center">
+                <label style="text-align: left;" for="InputNumber" class="form-label">Number: </label>
+                </div>
+                <div class="col-11 ">
+                    <input type="tel" class="form-control " id="InputNumber" placeholder="Number" maxlength="9" required>
+                </div>
+            </div>
+
+            <!-- Password -->
+              <div class="row mb-3">
+                <div class="col-1 d-flex align-items-center">
+                    <label style=" text-align: left;" for="InputPassword1" class="form-label">Password:</label>
+                </div>
+                <div class="col-11 ">
+                    <input type="password" class="form-control " id="InputPassword1" placeholder="Password" required>
+                </div>
+            </div>
+
+
+            <!-- Radio Button -->
+    <div class="row mb-3">
+                <div class="col-1">
+                    
+                </div>
+                <div class="col-11">
+                    
+                </div>
+            </div>
+            <div class="d-flex align-items-center mb-3">
+                <label style="margin-right: 10%; width: 100px;" class="form-check-label" for="radioCheck1">Male</label>
+                <input style="margin-right: 10%;" type="radio" class="form-check-input" id="radioCheck1" name="gender"
+                    value="Male" required>
+
+                <label style="margin-right: 10%; width: 100px;" class="form-check-label"
+                    for="radioCheck2">Female</label>
+                <input style="margin-right: 10%;" type="radio" class="form-check-input" id="radioCheck2" name="gender"
+                    value="Female" required>
+
+                <label style="margin-right: 10%; width: 100px;" class="form-check-label" for="radioCheck3">Other</label>
+                <input type="radio" class="form-check-input" id="radioCheck3" name="gender" value="Other" required>
+            </div>
+
+            <!-- Select Box -->
+            <div class="d-flex align-items-center mb-3">
+                <label style="width: 10%;" class="form-label">Team</label>
+                <select class="form-select w-25" id="InputTeam" aria-label="" required>
+                    <option selected disabled value="">Choose...</option>
+                    <option value="Benfica">Benfica</option>
+                    <option value="Porto">Porto</option>
+                    <option value="Sporting">Sporting</option>
+                    <option value="Outro">Other</option>
+                </select>
+            </div>
+
+            <!-- Check Box -->
+            <div class="d-flex align-items-center mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                    <label class="form-check-label" for="invalidCheck">
+                        I agree
+                    </label>
+                    <div class="invalid-feedback">
+                        You must agree before submitting.
+                    </div>
+                </div>
+            </div>
+            <!-- Submit -->
+            <div style="text-align: center;">
+                <button style="width: 150px;" type="submit" class="btn btn-danger">Register</button>
+            </div>
+        </div>
+    </form>
+
+    <script src="test.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
