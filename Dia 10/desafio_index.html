@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Desafio Index</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <!-- init html code -->
+    <pre class="p-0 mb-0" id="exercise"></pre>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+      crossorigin="anonymous"
+    ></script>
+    <!-- init js code -->
+    <script>
+      // https://www.w3schools.com/jsref/jsref_obj_array.asp
+      const numbers = [12, 3, 4, 5, 6, 7, 12, 12, 7, 8];
+      // const numbers2 = [12, 3, 4, 5, 6, 7, 12, 12, 7, 8, 12, 5, 3, 5, 2];
+
+      const elementExercise = document.getElementById("exercise");
+
+      elementExercise.innerHTML = `
+    /********************************************************************************
+     * 
+     *       Desafio: Identificar o número mais repetido e apresente os seus índices
+     * 
+     ********************************************************************************/`;
+      //  0 6 7
+      // '0,6,7'
+      // [0,6,7]
+      //  Add Logic
+
+      function countInArray(array, number) {
+        let count = 0;
+
+        for (let index = 0; index < array.length; index++) {
+          if (array[index] === number) {
+            count++;
+          }
+        }
+
+        return count;
+      }
+
+      let largerValueIndex = 0;
+      let repetitions = 0;
+      let repetitions_max = 0;
+      for (let index = 0; index < numbers.length; index++) {
+        repetitions = countInArray(numbers, numbers[index]);
+        if (repetitions_max < repetitions) {
+          largerValueIndex = index;
+          repetitions_max = repetitions;
+        }
+        repetitions = 0;
+      }
+
+      console.log(
+        "O numero mais repetido e: " +
+          numbers[largerValueIndex] +
+          " e repetiu se " +
+          repetitions_max +
+          " vezes"
+      );
+    </script>
+  </body>
+</html>
