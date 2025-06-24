@@ -64,7 +64,7 @@
     let array = [];
     array = array.concat(data1, data2, data3);
 
-    array.sort((a, b) => (a.name <= b.name ? -1 : 1))
+    array.sort((a, b) => (a.name <= b.name ? -1 : (a.name > b.name ? 1 : 0)))
 
     function containsInArray(element, array) {
       let i = 0;

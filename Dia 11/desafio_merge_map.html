@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        const data1 = [
+            { name: "Ze Carlos", id: 5 },
+            { name: "Ze Manel", id: 6 },
+            { name: "Sam", id: 4 }
+        ];
+        const data2 = [
+            { name: "Gata", id: 3 },
+            { name: "Sam", id: 4 }
+        ];
+        const data3 = [
+            { name: "Ze Carlos", id: 5 },
+            { name: "Hulk", id: 1 },
+            { name: "Migas", id: 2 }
+        ];
+
+        const mapa = new Map();
+
+        const newArray = [...data1, ...data2, ...data3];
+
+        console.log(newArray);
+        newArray.sort((a, b) => (a.name < b.name ? -1 : (a.name > b.name ? 1 : 0)));
+
+
+        newArray.forEach(animal => {
+            mapa.set(animal.id, animal.name);
+        });
+
+
+        const novoArray = [];
+        for (const [key, value] of mapa.entries()) {
+            novoArray.push({
+                id: key,
+                name: value,
+            })
+        }
+
+
+
+        console.log(novoArray);
+        console.log(mapa.entries());
+    </script>
+</body>
+
+</html>
