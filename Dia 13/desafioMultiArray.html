@@ -29,17 +29,17 @@
     function flatFunction(array) {
       for (const element of array) {
         if (Number.isInteger(Number(element))) {
-          if (typeof element === "number")
-            newArray.push(element)
-          else
-            newArray.push(parseInt(element));
+          // if (typeof element === "number")
+          // newArray.push(element)
+          // else
+          newArray.push(parseInt(element));
         } else if (typeof element === "object")
           flatFunction(element);
       }
     }
     flatFunction(data);
 
-    console.log(data.flat(Infinity).map(Number).filter(el => !isNaN(el)))
+    console.log(data.flat(Infinity).map(Number).filter(el => !isNaN(el)).sort((a, b) => a < b ? -1 : 1))
     console.log(newArray.sort((a, b) => a < b ? -1 : 1));
 
 

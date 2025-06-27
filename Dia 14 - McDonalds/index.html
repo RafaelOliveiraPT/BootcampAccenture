@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>McDonals APP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+    <style>
+        .vh-100 {
+
+            height: 100vh;
+            /* 100% da altura da viewport */
+        }
+
+        .no-wrap {
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <nav id="navbar" class="navbar bg-body-tertiary px-3 mb-3 sticky-top ">
+            <a class="navbar-brand" href="#">McDonalds APP</a>
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link" href="#createOrder">Criar Pedido</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#removeOrder">Remover Pedido</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#ordersList">Pedidos</a>
+                </li>
+            </ul>
+        </nav>
+        <div data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px -40%"
+            data-bs-smooth-scroll="true" class=" bg-body-tertiary p-3 rounded-2" tabindex="0">
+            <div id="createOrder" class="vh-100">
+                <h1> Novo Pedido </h1>
+
+                <div class="col d-flex align-items-center">
+                    <label class="form-label no-wrap mb-0" for="clientName"> Nome do cliente: </label>
+                    <input class="form-control" id="clientName" type="text" required>
+                </div>
+                <h5>Artigo</h5>
+                <div class="col d-flex">
+                    <div class="col-8 d-flex flex-wrap">
+                        <div id="typeFoodID" class="col-4">
+                            <!--created from javascript-->
+                        </div>
+                        <div id="selectFoodDetailID" class="col-8">
+                            <!--created from javascript-->
+                        </div>
+                        <div id="specialOrder" class="col-6 mt-3">
+                            <h5>Pedido especial</h5>
+                            <div id="specialFoodContentDivID">
+                                <p>Esta combinação não permite pedido especial.</p>
+                            </div>
+
+                            <!--created from javascript-->
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <button onclick="insertProductTable()" type="button" class="btn btn-primary w-100">Adicionar
+                            Produto</button>
+                    </div>
+                    <div id="buttonAddFoodDiv" class="col-4">
+                        <!--created from javascript-->
+                    </div>
+                </div>
+                <div id="table-productsOrder" class="col-12">
+
+
+                </div>
+                <div class="col-12 ">
+                    <button onclick="addOrder()" type="button" class="btn btn-primary w-100">Finalizar Pedido</button>
+
+                </div>
+
+            </div>
+            <div id="removeOrder" class="vh-100">
+                <h1> Remover pedidos concluidos</h1>
+
+                <div class="col-12 d-flex flex-wrap">
+                    <div class="col-3">
+                        <h5>Filtro:</h5>
+                    </div>
+                    <div id="selectListFilterID" class="col-9">
+                        <!--created by javascript-->
+                    </div>
+                    <div id="orderFilteredTable" class="col-12">
+                    </div>
+                </div>
+            </div>
+            <div id="ordersList" class="vh-100">
+                <h1> Tabela de pedidos ativos</h1>
+                <p>...</p>
+            </div>
+        </div>
+
+
+    </div>
+    <script src="./table.js"></script>
+    <script src="./elementLib.js"></script>
+    <script src="./dataModels.js"></script>
+    <script src="./sampleData.js"> </script>
+    <script>
+
+        //tabela onde vai mostrar os artigos de um pedido
+        const orderTable = new MyTable("table-productsOrder");
+        orderTable.initTable(["Artigo", "Extra", "Delete"]);
+        const ordersArray = [];
+
+        const orderFilterTable = new MyTable("orderFilteredTable");
+        orderFilterTable.initTable(["Nome", "Pedido", "Delete"]);
+        if (ordersArray.length === 0) {
+            initInputSelects();
+        }
+
+        function initInputSelects() {
+
+            createOptions('selectListFilterID', nameFilters);
+            ordersArray.push(sampleOrder1)
+            updateFilteredTable();
+        }
+
+        function addOrder() {
+            const customerName = orderTable.getNameCustomer();
+            const productsArray = orderTable.getProducts();
+
+            if (customerName !== "" && productsArray.length > 0) {
+                const order = new Order(customerName);
+                order.addProducts(productsArray);
+                order.save();
+                ordersArray.push(order);
+                updateFilteredTable();
+
+            }
+        }
+
+        function updateFilteredTable() {
+            const filteredTable = document.getElementById("orderFilteredTable").querySelector("tbody");
+            /* const rowsFilteredTable = filteredTable.rows;
+             for (const element of rowsFilteredTable) {
+                 element.remove();
+             }*/
+            filteredTable.innerHTML = "";
+            for (const order of ordersArray) {
+                const customerName = order.requesterName;
+                let orderDetails = "";
+                for (const product of order.products) {
+                    orderDetails += `<div> ${product.name} : ${product.extra}</div>`;
+                }
+                orderFilterTable.insertRowMyTable([customerName, orderDetails], order.id)
+
+            }
+
+        }
+
+        function createOptions(divID, arrayList) {
+            document.getElementById(divID).innerHTML = "";
+            let str_aux = `<select class="form-select" >`;
+            for (const element of arrayList) {
+                str_aux += `<option> ${element} </option>`
+            }
+            str_aux += `</select>`;
+            document.getElementById(divID).innerHTML = str_aux;
+        }
+
+        function updateSpecialOrder(typeFood) {
+            document.getElementById("specialFoodContentDivID").innerHTML = "";
+            switch (typeFood) {
+                case "Sanduiche":
+                    createOptions('specialFoodContentDivID', productExtraSanduichesList);
+                    break;
+                case "Bebida":
+                    createOptions('specialFoodContentDivID', productExtraBebidasList);
+                    break;
+                default:
+                    str = "Esta combinação não permite pedido especial.";
+                    document.getElementById("specialFoodContentDivID").innerHTML = str;
+                    break;
+            }
+        }
+
+
+
+        function changedFoodType() {
+            const typeFoodSelected = document.getElementById("selectInputTypeFoodID").value;
+            document.getElementById("selectFoodDetailID").innerHTML = "";
+
+            switch (typeFoodSelected) {
+                case "Sanduiche":
+                    createOptions('selectFoodDetailID', productNameSanduichesList);
+                    break;
+                case "Acompanhamento":
+                    createOptions('selectFoodDetailID', productNameAcompanhamentosList);
+                    break;
+                case "Bebida":
+                    createOptions('selectFoodDetailID', productNameBebidasList);
+                    break;
+                case "Molhos":
+                    createOptions('selectFoodDetailID', productNameSauces);
+                    break;
+                default:
+                    break;
+            }
+            updateSpecialOrder(typeFoodSelected);
+        }
+
+
+
+        //funcao que e acionada quando carregamos no botao adicionar produto
+        function insertProductTable() {
+            const foodDetail = document.getElementById("selectFoodDetailID").querySelector('select').value;
+            let extraFoodDetail;
+            if (document.getElementById("specialFoodContentDivID").querySelector('select') != null) {
+                extraFoodDetail = document.getElementById("specialFoodContentDivID").querySelector('select').value;
+            }
+            if (foodDetail) {
+                if (extraFoodDetail) {
+                    orderTable.insertRowMyTable([foodDetail, extraFoodDetail]);
+                } else {
+                    orderTable.insertRowMyTable([foodDetail, "-"]);
+                }
+
+            }
+        }
+
+        //funcao que dando o id de um botao, ele irá apagar a linha onde estiver esse botao
+        function removeItemTable(element, id) {
+            element.closest("tr").remove();
+            ordersArray.filter(e => (e.id !== id));
+        }
+
+        //constroi em html as inputList com os valores padrao em sampleData.js
+        typeFoodList = `<select onChange="changedFoodType()" id="selectInputTypeFoodID" class="form-select" >`;
+        for (const element of productNameTypeFoodList) {
+            typeFoodList += `<option> ${element} </option>`
+        }
+        typeFoodList += `</select>`;
+        document.getElementById("typeFoodID").innerHTML = typeFoodList;
+        document.getElementById("selectFoodDetailID").innerHTML = `
+        <select id="selectFoodDetailID" class="form-select" aria-label="Default select example">
+            <option> </option>
+        </select>`;
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
