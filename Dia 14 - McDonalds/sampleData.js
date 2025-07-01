@@ -1,22 +1,26 @@
 const sampleOrder1 = new Order("Ze Carlos");
 sampleOrder1.addProducts([new Product("Big Mac®", "Normal")]);
 sampleOrder1.id = 1;
-/*
+
 const sampleOrder2 = new Order("Ze Manel");
-sampleOrder2.addProduct("Big Mac®", "Sem Molhos");
-sampleOrder2.addProduct("Coca-Cola", "Sem Gelo");
+sampleOrder2.addProducts([
+  new Product("Big Mac®", "Sem Molhos"),
+  new Product("Coca-Cola", "Sem Gelo"),
+]);
 sampleOrder2.id = 2;
 
 const sampleOrder3 = new Order("Joao");
-sampleOrder3.addProduct("Big Mac®");
-sampleOrder3.addProduct("Double Cheeseburger");
-sampleOrder3.addProduct("Coca-Cola");
-sampleOrder3.addProduct("Batatas");
+sampleOrder3.addProducts([
+  new Product("Big Mac®", "Normal"),
+  new Product("Double Cheeseburger", "Normal"),
+  new Product("Coca-Cola", "Normal"),
+  new Product("Batatas", "-"),
+]);
 sampleOrder3.id = 3;
 
-const sampleOrder4 = new Order("Ze");
-sampleOrder4.addProduct("Big Mac®");
-sampleOrder4.id = 4;*/
+const sampleOrder4 = new Order("Rafael");
+sampleOrder4.addProducts([new Product("Big Tasty®", "Normal")]);
+sampleOrder4.id = 4;
 
 //const dataSample = [sampleOrder1, sampleOrder2, sampleOrder3, sampleOrder4];
 
