@@ -1,0 +1,58 @@
+.greenAccordion {
+  --bs-accordion-active-bg: darkseagreen;
+  --bs-accordion-active-color: white;
+  --bs-accordion-btn-bg: burlywood;
+  --bs-accordion-btn-color: white;
+}
+
+.accordion-button-plus {
+  border-radius: 25px !important;
+}
+
+.background-app {
+  background-color: beige;
+}
+
+.book-title-card {
+  background-color: darkseagreen;
+  color: white;
+  border-radius: 25px;
+  text-align: left;
+  padding-left: 20px;
+  padding-bottom: 16px;
+  padding-top: 16px;
+  padding-right: 20px;
+}
+
+.image-plus {
+  width: 250px;
+}
+
+.btn-like {
+  font-size: 60px;
+}
+
+.btn-dislike {
+  font-size: 45px;
+}
+
+.btn-menu {
+  background-color: darkseagreen;
+  --bs-btn-active-bg: burlywood;
+}
+
+.btn-dropdown-bg {
+  --bs-dropdown-link-color: white;
+  --bs-dropdown-bg: darkseagreen;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.btn-login {
+  --bs-btn-bg: darkseagreen;
+  --bs-btn-hover-bg: burlywood;
+  --bs-btn-hover-border-color: burlywood;
+  --bs-btn-color: white;
+}

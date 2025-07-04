@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <p id="paragrafo"> TESTE</p>
+
+    <input id="inputID" type="text">
+    <button type="button" onclick="escreveBD()">CLICA</button>
+
+    <script>
+        iniciaApp();
+
+        function escreveBD() {
+            const elementP = document.getElementById("paragrafo");
+            const elementInput = document.getElementById("inputID").value;
+            elementP.innerHTML = elementInput;
+            localStorage.setItem("p", JSON.stringify(elementInput));
+        }
+
+        function iniciaApp() {
+            const conteudoBD = localStorage.getItem("p");
+            console.log(conteudoBD);
+            if (conteudoBD !== null) {
+                const elementP = document.getElementById("paragrafo");
+                elementP.innerHTML = JSON.parse(conteudoBD);
+            }
+        }
+
+    </script>
+</body>
+
+</html>

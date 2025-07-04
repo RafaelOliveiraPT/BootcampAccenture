@@ -21,3 +21,21 @@ class Book {
     this.infoLink = infoLink;
   }
 }
+
+class User {
+  constructor(
+    id,
+    username,
+    arrayBooks,
+    indexGlobal,
+    filterAuthor = "",
+    filterWord = ""
+  ) {
+    this.id = id;
+    this.username = username;
+    this.arrayBooks = arrayBooks;
+    this.indexGlobal = indexGlobal;
+    this.filterAuthor = filterAuthor;
+    this.filterWord = filterWord;
+  }
+}
