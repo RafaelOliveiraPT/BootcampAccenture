@@ -8,11 +8,11 @@ import io.upacademy.jseproject.model.ShelfService;
 import io.upacademy.jseproject.utilities.Util;
 
 public class TextInterface {
-	
+
 	public static void showMenu(RunApp app) {
 		String menu = "Por favor selecione uma das seguintes opções:\n" + "1) Listar produtos\n"
 				+ "2) Listar prateleiras\n" + "3) Sair";
-		
+
 		boolean showMenuOption = true;
 		Scanner reader = new Scanner(System.in);
 		int choosenOptionByUser = -1;
@@ -38,15 +38,11 @@ public class TextInterface {
 		} while (showMenuOption);
 		reader.close();
 	}
-	
+
 	public static void showShelfMenu(RunApp app) {
-		String menuShelf = 
-				"Por favor selecione uma das seguintes opções:\n" + 
-				"1) Criar nova prateleira\n" + 
-				"2) Editar uma prateleira existente\n" + 
-				"3) Consultar o detalhe de uma prateleira\n" + 
-				"4) Remover uma prateleira\n" + 
-				"5) Voltar ao ecrã anterior";
+		String menuShelf = "Por favor selecione uma das seguintes opções:\n" + "1) Criar nova prateleira\n"
+				+ "2) Editar uma prateleira existente\n" + "3) Consultar o detalhe de uma prateleira\n"
+				+ "4) Remover uma prateleira\n" + "5) Voltar ao ecrã anterior";
 		boolean showMenuOption = true;
 		int choosenOptionByUser = -1;
 
@@ -85,14 +81,13 @@ public class TextInterface {
 
 		} while (showMenuOption);
 	}
-	
+
 	public static void showProductMenu(RunApp app) {
 		boolean showMenuOption = true;
 		int choosenOptionByUser = -1;
 		String menuProduct = "Por favor selecione uma das seguintes opções:\n" + "1) Criar novo produto\n"
 				+ "2) Editar um produto existente\n" + "3) Consultar o detalhe de um produto\n"
 				+ "4) Remover um produto\n" + "5) Voltar ao ecrã anterior";
-			
 
 		do {
 			System.out.println("-------------------------------------------------------------------------");
