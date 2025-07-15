@@ -1,0 +1,24 @@
+/**
+ * 
+ */
+package pt.upacademy.examples;
+
+import java.util.Scanner;
+
+//import java.util.Scanner;
+
+/**
+ * 
+ */
+public class Hello {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println();
+		Scanner reader = new Scanner(System.in);
+	}
+
+}

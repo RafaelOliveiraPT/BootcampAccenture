@@ -1,0 +1,72 @@
+package pt.upacademy.projeto1;
+
+import java.util.Scanner;
+
+public class Util {
+
+	public static Scanner reader = new Scanner(System.in);
+	
+	public static String getLineFromKeyboard() {
+		String auxStr;
+		
+		while(true) {
+			auxStr = reader.nextLine();
+			if(auxStr.length() != 0)
+				break;
+			System.out.print("Tem que inserir um valor...");
+		}	
+		return auxStr;
+	}
+	
+	public static int getIntFromKeyboard(boolean onlyPositive, boolean emptyText) {
+		int auxInt = -1;
+		while(auxInt < 0) {
+			while(!reader.hasNextLine()) {
+				System.out.println("Inseriu um valor inválido, pff insira um número.");
+				reader.nextLine();
+			}
+			if(reader.hasNextDouble()) {
+				auxInt = reader.nextInt();
+				if (onlyPositive && auxInt < 0) {
+					System.out.println("Introduza um valor positivo:");
+				} else if (!onlyPositive) {
+					break;
+				}
+			}else if(emptyText){
+				auxInt = -9999;
+				break;
+			}
+		}
+		if(reader.hasNextLine()) {
+			reader.nextLine();
+		}
+		return auxInt;
+	}
+	
+	public static double getDoubleFromKeyboard(boolean onlyPositive, boolean emptyText) {
+		double auxDouble = -1;
+		String auxStr;
+		while(auxDouble < 0) {
+			auxStr = reader.nextLine();
+			try {
+				if(emptyText && auxStr.isEmpty()) {
+					break;
+				}
+				auxDouble = Double.parseDouble(auxStr);
+				if (onlyPositive && auxDouble < 0) {
+					System.out.println("Introduza um valor positivo:");
+				} else if (!onlyPositive) {
+					break;
+				}
+			} catch (Exception e) {
+				System.out.print("Insira um valor válido:");
+			}
+		}
+		if(reader.hasNextLine()) {
+			reader.nextLine();
+		}
+		return auxDouble;
+	}
+	
+	
+}

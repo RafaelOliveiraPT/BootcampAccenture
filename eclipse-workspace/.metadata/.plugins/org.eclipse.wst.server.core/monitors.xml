@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<monitors>
+  <monitor port="11484" portId="2" serverId="WildFly 23" started="true"/>
+</monitors>

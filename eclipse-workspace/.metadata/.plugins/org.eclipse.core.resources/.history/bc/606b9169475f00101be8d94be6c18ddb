@@ -1,0 +1,47 @@
+package pt.upacademy.projeto1;
+
+import java.util.Scanner;
+
+public class Util {
+
+	public static Scanner reader = new Scanner(System.in);
+	
+	public static String getLineFromKeyboard() {
+		String auxStr;
+		
+		while(true) {
+			auxStr = reader.nextLine();
+			if(auxStr.length() != 0)
+				break;
+			System.out.print("Tem que inserir um valor...");
+		}	
+		return auxStr;
+	}
+	
+	public static int getIntFromKeyboard(boolean onlyPositive) {
+		int auxInt = -1;
+		while(auxInt < 0) {
+			while(!reader.hasNextInt()) {
+				System.out.println("Inseriu um valor inválido, pff insira um número.");
+			}
+			auxInt = reader.nextInt();
+			if(onlyPositive && auxInt < 0) {
+				System.out.println("Introduza um valor positivo:");
+			}
+		}
+		if(reader.hasNextLine());
+		reader.nextLine();
+		return auxInt;
+	}
+	
+	public static double getDoubleFromKeyboard() {
+		double auxDouble;
+		while(!reader.hasNextDouble()) {
+			System.out.println("Inseriu um valor inválido, pff insira um número.");
+			reader.nextLine();
+		}
+		auxDouble = reader.nextDouble();
+		reader.nextLine();
+		return auxDouble;
+	}
+}

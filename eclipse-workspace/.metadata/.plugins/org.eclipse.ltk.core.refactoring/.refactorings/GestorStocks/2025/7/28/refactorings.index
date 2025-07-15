@@ -1,0 +1,8 @@
+1752011983285	Move compilation unit
+1752011990600	Move compilation unit
+1752011999671	Delete element
+1752042174270	Encapsulate field 'capacity, ...'
+1752046948717	Rename compilation unit 'app.java'
+1752047627009	Encapsulate field 'name, ...'
+1752135180047	Rename field 'shelfesList'
+1752342388268	Rename local variable 'auxInt'

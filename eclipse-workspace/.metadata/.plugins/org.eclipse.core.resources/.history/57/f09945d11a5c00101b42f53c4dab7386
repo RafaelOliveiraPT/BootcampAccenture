@@ -1,0 +1,30 @@
+/**
+ * 
+ */
+package pt.upacademy.examples;
+
+import java.util.Scanner;
+
+//import java.util.Scanner;
+
+/**
+ * 
+ */
+public class Hello {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.print("Hello, por favor insere o teu nome: ");
+		try (Scanner reader = new Scanner(System.in)) {
+			String readedValue = reader.next();
+			System.out.println("O valor impresso e: " + readedValue);
+			reader.close();
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+	}
+
+}

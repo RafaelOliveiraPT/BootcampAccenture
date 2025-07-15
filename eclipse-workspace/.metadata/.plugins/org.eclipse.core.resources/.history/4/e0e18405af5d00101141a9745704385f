@@ -1,0 +1,19 @@
+package pt.upacademy.examples;
+
+public class Test {
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String a = "ola";
+		funcao1(a);
+		System.out.println(a);
+
+	}
+
+	public static void funcao1(String valor) {
+		valor = "besta";
+		
+	}
+	
+	
+}

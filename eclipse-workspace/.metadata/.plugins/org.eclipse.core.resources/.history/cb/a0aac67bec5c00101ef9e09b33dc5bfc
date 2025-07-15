@@ -1,0 +1,17 @@
+package pt.upacademy.examples;
+
+import java.util.Scanner;
+
+public class Util {
+
+	public static Scanner reader = new Scanner(System.in);
+	
+	public static String getLineFromKeyboard() {
+		
+		while(!reader.hasNext()) {
+			System.out.println("Tem que inserer um valor...");
+			reader.nextLine();
+		}	
+		return reader.nextLine();
+	}
+}

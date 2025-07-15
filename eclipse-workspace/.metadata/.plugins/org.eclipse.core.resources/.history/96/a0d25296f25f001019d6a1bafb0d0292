@@ -1,0 +1,59 @@
+package gestorstocks;
+
+import java.util.ArrayList;
+
+public class SampleData {	
+	
+	public static ArrayList<Produto> getSampleDataProducts(){
+		ArrayList<Produto> dataSampleProductsList = new ArrayList<Produto>(); 
+		// dados para teste
+		Produto a1 = new Produto();
+		a1.setDiscount(2);
+		a1.setIva(23);
+		a1.setPvp(22);
+		a1.setName("Sapato");
+		dataSampleProductsList.add(a1);
+		
+		Produto a2 = new Produto();
+		a2.setDiscount(2);
+		a2.setIva(23);
+		a2.setPvp(22);
+		a2.setName("Camisola");
+		dataSampleProductsList.add(a2);
+		
+		Produto a3 = new Produto();
+		a3.setDiscount(5);
+		a3.setIva(23);
+		a3.setPvp(40);
+		a3.setName("Calças");
+		dataSampleProductsList.add(a3);
+
+		Produto a4 = new Produto();
+		a4.setDiscount(10);
+		a4.setIva(23);
+		a4.setPvp(15);
+		a4.setName("Boné");
+		dataSampleProductsList.add(a4);
+
+		Produto a5 = new Produto();
+		a5.setDiscount(0);
+		a5.setIva(23);
+		a5.setPvp(50);
+		a5.setName("Relógio");
+		dataSampleProductsList.add(a5);
+		
+		return dataSampleProductsList;
+	}
+	/*
+	a.setDiscount(2);
+	a.setIva(23);
+	a.setPvp(22);
+	a.setName("Sapato");
+	myApplication.productsList.add(a);
+
+	Prateleira p1 = new Prateleira();
+	p1.setCapacity(1);
+	p1.setDiariaAluguer(.20);
+	myApplication.shelvesList.add(p1);
+	*/
+}

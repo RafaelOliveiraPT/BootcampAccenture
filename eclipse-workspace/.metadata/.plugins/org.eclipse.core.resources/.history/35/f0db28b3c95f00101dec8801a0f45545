@@ -1,0 +1,66 @@
+package pt.upacademy.projeto1;
+
+import java.util.Scanner;
+
+public class Util {
+
+	public static Scanner reader = new Scanner(System.in);
+	
+	public static String getLineFromKeyboard() {
+		String auxStr;
+		
+		while(true) {
+			auxStr = reader.nextLine();
+			if(auxStr.length() != 0)
+				break;
+			System.out.print("Tem que inserir um valor...");
+		}	
+		return auxStr;
+	}
+	
+	public static int getIntFromKeyboard(boolean onlyPositive, boolean emptyText) {
+		int auxInt = -9999;
+		String auxStr;
+		while(auxInt < 0) {
+			auxStr = reader.nextLine();
+			try {
+				if(emptyText && auxStr.isEmpty()) {
+					break;
+				}
+				auxInt = Integer.parseInt(auxStr);
+				if (onlyPositive && auxInt < 0) {
+					System.out.println("Introduza um valor positivo:");
+				} else if (!onlyPositive) {
+					break;
+				}
+			} catch (Exception e) {
+				System.out.print("Insira um valor válido:");
+			}
+		}
+		return auxInt;
+	}
+	
+	public static double getDoubleFromKeyboard(boolean onlyPositive, boolean emptyText) {
+		double auxDouble = -9999;
+		String auxStr;
+		while(auxDouble < 0) {
+			auxStr = reader.nextLine();
+			try {
+				if(emptyText && auxStr.isEmpty()) {
+					break;
+				}
+				auxDouble = Double.parseDouble(auxStr);
+				if (onlyPositive && auxDouble < 0) {
+					System.out.println("Introduza um valor positivo:");
+				} else if (!onlyPositive) {
+					break;
+				}
+			} catch (Exception e) {
+				System.out.print("Insira um valor válido:");
+			}
+		}
+		return auxDouble;
+	}
+	
+	
+}

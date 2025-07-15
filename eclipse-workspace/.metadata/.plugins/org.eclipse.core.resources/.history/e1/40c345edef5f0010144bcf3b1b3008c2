@@ -1,0 +1,11 @@
+package gestorstocks;
+
+import java.util.ArrayList;
+
+public class SampleData {
+
+	ArrayList<Produto> dataSampleProductsList = new ArrayList<Produto>(); 
+	// dados para teste
+	Produto a = new Produto();
+	
+}

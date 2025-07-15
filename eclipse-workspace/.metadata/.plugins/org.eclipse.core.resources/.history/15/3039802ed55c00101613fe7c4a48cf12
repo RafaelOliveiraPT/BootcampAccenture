@@ -1,0 +1,29 @@
+/**
+ * 
+ */
+package pt.upacademy.examples;
+
+import java.util.Scanner;
+
+//import java.util.Scanner;
+
+/**
+ * 
+ */
+public class Hello {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		System.out.print("Hello, por favor insere o teu nome: ");
+		Scanner reader = new Scanner(System.in);
+		String readedValue = reader.next();
+		System.out.println("O valor impresso e: " + readedValue);
+		String aux = reader.next();
+		System.out.println(aux);
+		reader.close();
+
+	}
+
+}

@@ -1,0 +1,55 @@
+package pt.upacademy.examples;
+
+
+public class User {
+
+	private String nome;
+	private int idade;
+	
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		run();
+	}
+
+	private static void run() {
+		User newUser = new User();
+		System.out.print("Insira o seu nome:");
+		newUser.setNome(Util.getLineFromKeyboard());
+		System.out.print("Insira a sua idade:");
+		newUser.setIdade(Util.getIntFromKeyboard());
+		System.out.println(newUser.toString());
+		Util.reader.close();
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public int getIdade() {
+		return idade;
+	}
+
+	public void setIdade(int idade) {
+		this.idade = idade;
+	}
+
+	@Override
+	public String toString() {
+		return "Object User:\n nome=" + nome + "\nidade=" + idade;
+	}
+	
+
+}
+
+/*
+ * public class User { nome idade
+ * 
+ * constructor()
+ * 
+ * print() }
+ */

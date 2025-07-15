@@ -1,0 +1,22 @@
+package pt.upacademy.examples;
+
+import java.util.Scanner;
+
+public class FizzBuzz {
+
+	//fizz se for multiplo de 3
+	//buzz se for multiplo de 5
+	//fizzbuzz for multiplo de 3 e 5
+	public static void main(String[] args) {
+		int auxInt;
+		
+		Scanner reader = new Scanner(System.in);
+		System.out.print("Nr de ciclos:");
+		while(!reader.hasNextInt()) {
+			reader.nextLine();
+		}
+		auxInt = reader.nextInt();
+		System.out.println(auxInt);
+	}
+
+}

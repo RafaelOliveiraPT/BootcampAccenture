@@ -1,0 +1,74 @@
+package pt.upacademy.examples;
+
+import java.util.List;
+
+public class Produto {
+
+	private int ID;
+	private List<Prateleira> prateleiras;
+	private int discount;
+	private double iva;
+	private double pvp;
+	
+	public Produto() {
+		
+	}
+	
+	public int getID() {
+		return ID;
+	}
+	
+	public void setID(int iD) {
+		ID = iD;
+	}
+	
+	public List<Prateleira> getPrateleiras() {
+		return prateleiras;
+	}
+	
+	public void addPrateleira(Prateleira prateleira) {
+		this.prateleiras.add(prateleira);
+	}
+	
+	public void removePrateleira(Prateleira prateleira) {
+		prateleiras.remove(prateleira);
+	}
+	
+	public int getDiscount() {
+		return discount;
+	}
+	
+	public void setDiscount(int discount) {
+		this.discount = discount;
+	}
+	
+	public double getIva() {
+		return iva;
+	}
+	
+	public void setIva(double iva) {
+		this.iva = iva;
+	}
+	
+	public double getPvp() {
+		return pvp;
+	}
+	
+	public void setPvp(double pvp) {
+		this.pvp = pvp;
+	}
+	
+	
+}
+
+
+/*
+
+Um produto tem:
+○ Um código (ID)
+○ Uma lista de prateleiras onde está exposto
+○ Valor unitário de desconto
+○ IVA (Imposto de Valor Acrescentado em percentagem)
+○ PVP (Preço de Venda ao Público)
+
+*/

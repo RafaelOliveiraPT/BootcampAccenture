@@ -1,0 +1,37 @@
+package pt.upacademy.examples;
+
+import java.util.Scanner;
+
+public class FizzBuzz {
+
+	//fizz se for multiplo de 3
+	//buzz se for multiplo de 5
+	//fizzbuzz for multiplo de 3 e 5
+	public static void main(String[] args) {
+		int auxInt;
+		
+		Scanner reader = new Scanner(System.in);
+		System.out.print("Nr de ciclos:");
+		while(!reader.hasNextInt()) {
+			reader.nextLine();
+			System.out.print("Intoduza um valor válido:");
+		}
+		auxInt = reader.nextInt();
+		fizzbuzz(auxInt);
+		reader.close();
+	}
+
+	public static void fizzbuzz(int cycles) {
+		for (int i = 0; i <= cycles; i++) {
+			if((i % 3 == 0) && (i % 5 == 0))
+				System.out.println(i + " - fizzbuzz");
+			else if ((i % 5) == 0) {
+				System.out.println(i + " - buzz");
+			} else if ((i % 3) == 0) {
+				System.out.println(i + " - fizz");
+			} else {
+				System.out.println(i);
+			}
+		}
+	}
+}

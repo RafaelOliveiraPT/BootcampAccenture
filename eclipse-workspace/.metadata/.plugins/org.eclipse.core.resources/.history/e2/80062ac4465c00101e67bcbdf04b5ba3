@@ -1,0 +1,40 @@
+package pt.upacademy.examples;
+
+public class Prateleira {
+	private int ID;
+	private Produto produto;
+	private double diariaAluguer;
+	
+	public Prateleira() {
+	
+	}
+	
+	public int getID() {
+		return ID;
+	}
+	public void setID(int iD) {
+		ID = iD;
+	}
+	public Produto getProduto() {
+		return produto;
+	}
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+	public double getDiariaAluguer() {
+		return diariaAluguer;
+	}
+	public void setDiariaAluguer(double diariaAluguer) {
+		this.diariaAluguer = diariaAluguer;
+	}
+}
+
+
+/*
+
+Um código (ID)
+○ Capacidade
+○ Produto que alberga
+○ Preço de aluguer de localização (diário)
+
+*/
