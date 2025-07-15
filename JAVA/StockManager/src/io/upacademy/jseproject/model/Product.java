@@ -26,7 +26,7 @@ public class Product {
 		ID = iD;
 	}
 	
-	public List<Shelf> getPrateleiras() {
+	public List<Shelf> getShelves() {
 		return shelves;
 	}
 	

@@ -11,6 +11,20 @@ public class RunApp {
 	private ArrayList<Shelf> shelvesList = new ArrayList<Shelf>();
 	private Scanner reader = new Scanner(System.in);
 
+	
+	
+	public ArrayList<Product> getProductsList() {
+		return productsList;
+	}
+
+	public ArrayList<Shelf> getShelvesList() {
+		return shelvesList;
+	}
+
+	public Scanner getReader() {
+		return reader;
+	}
+
 	public static void beginApp() {
 		RunApp myApplication = new RunApp();
 		loadSampleData(myApplication);
@@ -108,7 +122,7 @@ public class RunApp {
 			while (true) {
 				auxInt = Util.getIntFromKeyboard(true, false);
 
-				auxProduct = getProduct(auxInt);
+				auxProduct = ProductService.getProduct(auxInt, this);
 				if (auxProduct != null) {
 					newShelf.setProduto(auxProduct);
 					newShelf.setCapacity(0);
@@ -167,7 +181,7 @@ public class RunApp {
 				if (auxInt == -1) {
 					break;
 				}
-				auxProduct = getProduct(auxInt);
+				auxProduct = ProductService.getProduct(auxInt, this);
 				if (auxProduct != null) {
 					shelf.setProduto(auxProduct);
 					auxProduct.addPrateleira(shelf);
@@ -245,7 +259,7 @@ public class RunApp {
 
 		do {
 			System.out.println("-------------------------------------------------------------------------");
-			showProducts();
+			ProductService.showProducts(this);
 			System.out.println("-------------------------------------------------------------------------");
 			Interface.showProductMenu();
 			choosenOptionByUser = Util.getIntFromKeyboard(true, false);
@@ -254,19 +268,19 @@ public class RunApp {
 				switch (choosenOptionByUser) {
 				case 1:
 					// criar novo produto
-					createProduct();
+					ProductService.createProduct(this);
 					break;
 				case 2:
 					// editar um produto existente
-					editProduct();
+					ProductService.editProduct(this);
 					break;
 				case 3:
 					// consultar o detalhe de um produto
-					consultProductDetails();
+					ProductService.consultProductDetails(this);
 					break;
 				case 4:
 					// remover um produto
-					removeProduct();
+					ProductService.removeProduct(this);
 					break;
 				case 5:
 					// voltar ao ecra anterior
@@ -279,191 +293,6 @@ public class RunApp {
 		} while (showMenuOption);
 	}
 
-	private void createProduct() {
-		Product newProduct = new Product();
-		int auxInt;
-		double auxDouble;
-
-		System.out.println("Insira o nome do produto:");
-		newProduct.setName(Util.getLineFromKeyboard());
-
-		// vai ser pedido ao utilizador uma prateleira de cada vez até inserir o valor
-		// -1
-		while (true) {
-			if (shelvesList.size() == 0) {
-				System.out.println("Não existem prateleiras criadas, vamos para o próximo atributo\n");
-				break;
-			}
-			System.out.print("Insira o numero da prateleira em que o produto está colocado. (-1 p/ terminar!)");
-			auxInt = Util.getIntFromKeyboard(false, false);
-			if (auxInt == -1) {
-				break;
-			}
-			for (int i = 0; i < shelvesList.size(); i++) {
-				if (shelvesList.get(i).getID() == auxInt && shelvesList.get(i).getCapacity() == 1) {
-					shelvesList.get(i).setCapacity(0);
-					shelvesList.get(i).setProduto(newProduct);
-					newProduct.addPrateleira(shelvesList.get(i));
-					break;
-				} else if (shelvesList.get(i).getID() == auxInt && shelvesList.get(i).getCapacity() == 0) {
-					System.out.println("A prateleira que introduziu já está ocupada!");
-				} else if (i == shelvesList.size() - 1) {
-					System.out.println("A prateleira que introduziu não é válida!");
-				}
-			}
-		}
-
-		System.out.print("Insira o valor de desconto do produto:");
-		auxDouble = Util.getDoubleFromKeyboard(true, false);
-		newProduct.setDiscount(auxDouble);
-
-		System.out.print("Insira o valor do iva do produto:");
-		auxDouble = Util.getDoubleFromKeyboard(true, false);
-		newProduct.setIva(auxDouble);
-
-		System.out.print("Insira o valor do PVP do produto:");
-		auxDouble = Util.getDoubleFromKeyboard(true, false);
-		newProduct.setPvp(auxDouble);
-
-		productsList.add(newProduct);
-	}
-
-	private void editProduct() {
-		int auxInt;
-		Product auxProduct;
-
-		System.out.print("Insira o ID do produto:");
-		auxInt = Util.getIntFromKeyboard(true, false);
-		if (auxInt >= 0) {
-			auxProduct = getProduct(auxInt);
-			if (auxProduct != null) {
-				editProductHelper(auxProduct);
-			} else {
-				System.out.println("Não existe nenhum produto com esse ID");
-			}
-		} else {
-			System.out.println("O ID tem que ser um número positivo.");
-		}
-	}
-
-	private void editProductHelper(Product product) {
-		String auxStr;
-		Double auxDouble = 0.0;
-		int auxInt;
-
-		// change product name
-		System.out.print("Nome de produto atual: " + product.getName() + " modificar:");
-		auxStr = reader.nextLine();
-		if (!auxStr.isEmpty()) {
-			product.setName(auxStr);
-			System.out.println("diz que a string tem conteudo");
-		}
-
-		// change discount
-		System.out.print("Desconto do produto atual: " + product.getDiscount() + " modificar:");
-		auxDouble = Util.getDoubleFromKeyboard(true, true);
-		if (auxDouble >= 0) {
-			product.setDiscount(auxDouble);			
-		}
-
-		// change iva
-		System.out.print("IVA do produto atual: " + product.getIva() + " modificar:");
-		auxDouble = Util.getDoubleFromKeyboard(true, true);
-		if (auxDouble >= 0) {			
-			product.setIva(auxDouble);
-		}
-
-		System.out.print("PVP do produto atual: " + product.getPvp() + " modificar:");
-		auxDouble = Util.getDoubleFromKeyboard(true, true);
-		if (auxDouble >= 0) {			
-			product.setPvp(auxDouble);
-		}
-		showShelvesFromProduct(product);
-		product.clearShelves();
-		// vai ser pedido ao utilizador uma prateleira de cada vez até inserir o valor
-		// -1
-		while (true) {
-			if (shelvesList.size() == 0) {
-				System.out.println("Não existem prateleiras criadas, vamos para o próximo atributo\n");
-				break;
-			}
-			System.out.print("Insira o numero da prateleira em que o produto está colocado. (-1 p/ terminar!)");
-			auxInt = Util.getIntFromKeyboard(false, false);
-			if (auxInt == -1) {
-				break;
-			}
-			for (int i = 0; i < shelvesList.size(); i++) {
-				if (shelvesList.get(i).getID() == auxInt && shelvesList.get(i).getCapacity() == 1) {
-					shelvesList.get(i).setCapacity(0);
-					shelvesList.get(i).setProduto(product);
-					product.addPrateleira(shelvesList.get(i));
-					break;
-				} else if (shelvesList.get(i).getID() == auxInt && shelvesList.get(i).getCapacity() == 0) {
-					System.out.println("A prateleira que introduziu já está ocupada!");
-				} else if (i == shelvesList.size() - 1) {
-					System.out.println("A prateleira que introduziu não é válida!");
-				}
-			}
-		}
-	}
-
-	private void consultProductDetails() {
-		int auxInt;
-		Product auxProduct;
-
-		System.out.print("Insira o ID do produto:");
-		auxInt = Util.getIntFromKeyboard(true, false);
-		if (auxInt >= 0) {
-			auxProduct = getProduct(auxInt);
-			if (auxProduct != null) {
-				System.out.println("-------------------------------------------------------------------------");
-				auxProduct.showProduct();
-				System.out.println("-------------------------------------------------------------------------");
-			} else {
-				System.out.println("Não existe nenhum produto com esse ID");
-			}
-		} else {
-			System.out.println("O ID tem que ser um número positivo.");
-		}
-	}
-
-	private void removeProduct() {
-		int auxInt;
-		Product auxProduct;
-
-		System.out.print("Insira o ID do produto:");
-		auxInt = Util.getIntFromKeyboard(true, false);
-		auxProduct = getProduct(auxInt);
-		if (auxProduct != null) {
-			removeProductHelper(auxProduct);
-		} else {
-			System.out.println("Não existe nenhum produto com esse ID");
-		}
-	}
-
-	private void removeProductHelper(Product product) {
-		product.clearShelves();
-		productsList.remove(product);
-		product = null;
-		System.out.println("Produto removido com sucesso!");
-	}
-
-	private void showShelvesFromProduct(Product product) {
-		System.out.println("-----------------------------------");
-		System.out.println("O produto: " + product.getName() + " está nas seguintes prateleiras:");
-		for (Shelf shelf : product.getPrateleiras()) {
-			System.out.println(shelf.getID());
-		}
-		System.out.println("-----------------------------------");
-	}
-
-	private void showProducts() {
-		System.out.println("Lista dos produtos existentes:");
-		for (Product product : productsList) {
-			product.showProduct();
-		}
-	}
-
 	private void showShelves() {
 		System.out.println("Lista das prateleiras existentes:");
 		for (Shelf shelf : shelvesList) {
@@ -471,13 +300,7 @@ public class RunApp {
 		}
 	}
 
-	private Product getProduct(int ID) {
-		for (Product product : productsList) {
-			if (product.getID() == ID)
-				return product;
-		}
-		return null;
-	}
+	
 
 	private Shelf getShelf(int ID) {
 		for (Shelf shelf : shelvesList) {

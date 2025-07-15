@@ -76,16 +76,4 @@ public class SampleData {
 		
 		return dataSampleShelvesList;
 	}
-	/*
-	a.setDiscount(2);
-	a.setIva(23);
-	a.setPvp(22);
-	a.setName("Sapato");
-	myApplication.productsList.add(a);
-
-	Prateleira p1 = new Prateleira();
-	p1.setCapacity(1);
-	p1.setDiariaAluguer(.20);
-	myApplication.shelvesList.add(p1);
-	*/
 }
