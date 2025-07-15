@@ -6,24 +6,16 @@ import io.upacademy.jseproject.utilities.Util;
 
 public class ShelfService {
 
-	
-
-
 	public static void createShelf(RunApp app) {
 		Shelf newShelf = new Shelf();
-		int auxInt;
-		double auxDouble;
 		Product auxProduct;
 		ArrayList <Shelf> shelvesList = app.getShelvesList();
 		ArrayList <Product> productsList = app.getProductsList();
 
 		if (productsList.size() != 0) {
 			// obter o id para produto
-			System.out.print("Insira o ID do produto:");
 			while (true) {
-				auxInt = Util.getIntFromKeyboard(true, false);
-
-				auxProduct = ProductService.getProduct(auxInt, app);
+				auxProduct = ProductService.getProduct(Util.getIntFromKeyboard("Insira o ID do produto:", true, false), app);
 				if (auxProduct != null) {
 					newShelf.setProduto(auxProduct);
 					newShelf.setCapacity(0);
@@ -34,21 +26,16 @@ public class ShelfService {
 				}
 			}
 		}
-
+		
 		// obter o valor para o atributo diariaAluguer
-		System.out.print("Introduza um preço para a diária do aluguer:");
-		auxDouble = Util.getDoubleFromKeyboard(true, false);
-		newShelf.setDiariaAluguer(auxDouble);
+		newShelf.setDiariaAluguer(Util.getDoubleFromKeyboard("Introduza um preço para a diária do aluguer:", true, false));
 		shelvesList.add(newShelf);
 	}
 
 	public static void editShelf(RunApp app) {
-		int auxInt;
 		Shelf auxPrateleira;
 
-		System.out.print("Insira o ID do prateleira:");
-		auxInt = Util.getIntFromKeyboard(true, false);
-		auxPrateleira = getShelf(auxInt, app);
+		auxPrateleira = getShelf(Util.getIntFromKeyboard("Insira o ID do prateleira:", true, false), app);
 		if (auxPrateleira != null) {
 			editShelftHelper(auxPrateleira, app);
 		} else {
@@ -77,9 +64,8 @@ public class ShelfService {
 				shelf.getProduto().removeShelf(shelf);
 			}
 			shelf.setProduto(null);
-			System.out.print("Insira o numero do produto ou -1 p/ continuar:");
 			while (true) {
-				auxInt = Util.getIntFromKeyboard(false, false);
+				auxInt = Util.getIntFromKeyboard("Insira o numero do produto ou -1 p/ continuar:", false, false);
 				if (auxInt == -1) {
 					break;
 				}
@@ -98,10 +84,9 @@ public class ShelfService {
 			System.out.println("capacity=" + shelf.getCapacity());
 		}
 		System.out.print("valor atual diariaAluguer=" + shelf.getDiariaAluguer());
-		System.out.print(" introduza um novo preço:");
 
 		// obter o valor para o atributo diaria de aluguer
-		auxDouble = Util.getDoubleFromKeyboard(true, true);
+		auxDouble = Util.getDoubleFromKeyboard(" Introduza um novo preço:", true, true);
 		if (auxDouble >= 0) {
 			shelf.setDiariaAluguer(auxDouble);
 		}
@@ -111,8 +96,7 @@ public class ShelfService {
 		int auxInt;
 		Shelf auxShelf;
 
-		System.out.print("Insira o ID da prateleira:");
-		auxInt = Util.getIntFromKeyboard(true, false);
+		auxInt = Util.getIntFromKeyboard("Insira o ID da prateleira:", true, false);
 		if (auxInt >= 0) {
 			auxShelf = getShelf(auxInt,app);
 			if (auxShelf != null) {
@@ -138,8 +122,7 @@ public class ShelfService {
 		Shelf auxShelf;
 		ArrayList <Shelf> shelvesList = app.getShelvesList();
 
-		System.out.print("Insira o ID da prateleira:");
-		auxInt = Util.getIntFromKeyboard(true, false);
+		auxInt = Util.getIntFromKeyboard("Insira o ID da prateleira:", true, false);
 		if (auxInt >= 0) {
 			auxShelf = getShelf(auxInt, app);
 			if (auxShelf != null) {

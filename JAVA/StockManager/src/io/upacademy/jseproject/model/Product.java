@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Product {
 
-	private int ID;
-	private static int globalID = 0;
+	private long ID;
+	private static long globalID = 0;
 	private ArrayList<Shelf> shelves;
 	private String name;
 	private double discount;
@@ -18,7 +18,7 @@ public class Product {
 		this.shelves = new ArrayList<Shelf>();
 	}
 	
-	public int getID() {
+	public long getID() {
 		return ID;
 	}
 	

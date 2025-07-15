@@ -10,7 +10,6 @@ public class ProductService {
 	public static void createProduct(RunApp app) {
 		Product newProduct = new Product();
 		int auxInt;
-		double auxDouble;
 		ArrayList <Shelf> shelvesList = app.getShelvesList();
 		ArrayList <Product> productsList = app.getProductsList();
 
@@ -24,8 +23,7 @@ public class ProductService {
 				System.out.println("Não existem prateleiras criadas, vamos para o próximo atributo\n");
 				break;
 			}
-			System.out.print("Insira o numero da prateleira em que o produto está colocado. (-1 p/ terminar!)");
-			auxInt = Util.getIntFromKeyboard(false, false);
+			auxInt = Util.getIntFromKeyboard("Insira o numero da prateleira em que o produto está colocado. (-1 p/ terminar!)",false, false);
 			if (auxInt == -1) {
 				break;
 			}
@@ -43,18 +41,9 @@ public class ProductService {
 			}
 		}
 
-		System.out.print("Insira o valor de desconto do produto:");
-		auxDouble = Util.getDoubleFromKeyboard(true, false);
-		newProduct.setDiscount(auxDouble);
-
-		System.out.print("Insira o valor do iva do produto:");
-		auxDouble = Util.getDoubleFromKeyboard(true, false);
-		newProduct.setIva(auxDouble);
-
-		System.out.print("Insira o valor do PVP do produto:");
-		auxDouble = Util.getDoubleFromKeyboard(true, false);
-		newProduct.setPvp(auxDouble);
-
+		newProduct.setDiscount(Util.getDoubleFromKeyboard("Insira o valor de desconto do produto:", true, false));
+		newProduct.setIva(Util.getDoubleFromKeyboard("Insira o valor do iva do produto:", true, false));
+		newProduct.setPvp(Util.getDoubleFromKeyboard("Insira o valor do PVP do produto:", true, false));
 		productsList.add(newProduct);
 	}
 	
@@ -62,8 +51,7 @@ public class ProductService {
 		int auxInt;
 		Product auxProduct;
 
-		System.out.print("Insira o ID do produto:");
-		auxInt = Util.getIntFromKeyboard(true, false);
+		auxInt = Util.getIntFromKeyboard("Insira o ID do produto:", true, false);
 		if (auxInt >= 0) {
 			auxProduct = getProduct(auxInt, app);
 			if (auxProduct != null) {
@@ -92,21 +80,18 @@ public class ProductService {
 		}
 
 		// change discount
-		System.out.print("Desconto do produto atual: " + product.getDiscount() + " modificar:");
-		auxDouble = Util.getDoubleFromKeyboard(true, true);
+		auxDouble = Util.getDoubleFromKeyboard("Desconto do produto atual: " + product.getDiscount() + " modificar:", true, true);
 		if (auxDouble >= 0) {
 			product.setDiscount(auxDouble);			
 		}
 
 		// change iva
-		System.out.print("IVA do produto atual: " + product.getIva() + " modificar:");
-		auxDouble = Util.getDoubleFromKeyboard(true, true);
+		auxDouble = Util.getDoubleFromKeyboard("IVA do produto atual: " + product.getIva() + " modificar:", true, true);
 		if (auxDouble >= 0) {			
 			product.setIva(auxDouble);
 		}
 
-		System.out.print("PVP do produto atual: " + product.getPvp() + " modificar:");
-		auxDouble = Util.getDoubleFromKeyboard(true, true);
+		auxDouble = Util.getDoubleFromKeyboard("PVP do produto atual: " + product.getPvp() + " modificar:", true, true);
 		if (auxDouble >= 0) {			
 			product.setPvp(auxDouble);
 		}
@@ -119,8 +104,7 @@ public class ProductService {
 				System.out.println("Não existem prateleiras criadas, vamos para o próximo atributo\n");
 				break;
 			}
-			System.out.print("Insira o numero da prateleira em que o produto está colocado. (-1 p/ terminar!)");
-			auxInt = Util.getIntFromKeyboard(false, false);
+			auxInt = Util.getIntFromKeyboard("Insira o numero da prateleira em que o produto está colocado. (-1 p/ terminar!)", false, false);
 			if (auxInt == -1) {
 				break;
 			}
@@ -143,8 +127,7 @@ public class ProductService {
 		int auxInt;
 		Product auxProduct;
 
-		System.out.print("Insira o ID do produto:");
-		auxInt = Util.getIntFromKeyboard(true, false);
+		auxInt = Util.getIntFromKeyboard("Insira o ID do produto:", true, false);
 		auxProduct = getProduct(auxInt, app);
 		if (auxProduct != null) {
 			removeProductHelper(auxProduct, app);
@@ -161,7 +144,7 @@ public class ProductService {
 		System.out.println("Produto removido com sucesso!");
 	}
 	
-	static Product getProduct(int ID, RunApp app) {
+	static Product getProduct(long ID, RunApp app) {
 		ArrayList<Product> productsList = app.getProductsList();
 		for (Product product : productsList) {
 			if (product.getID() == ID)
@@ -192,8 +175,7 @@ public class ProductService {
 		int auxInt;
 		Product auxProduct;
 
-		System.out.print("Insira o ID do produto:");
-		auxInt = Util.getIntFromKeyboard(true, false);
+		auxInt = Util.getIntFromKeyboard("Insira o ID do produto:", true, false);
 		if (auxInt >= 0) {
 			auxProduct = getProduct(auxInt, app);
 			if (auxProduct != null) {

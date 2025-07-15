@@ -16,10 +16,8 @@ public class TextInterface {
 		boolean showMenuOption = true;
 		Scanner reader = new Scanner(System.in);
 		int choosenOptionByUser = -1;
-
 		do {
-			System.out.println(menu);
-			choosenOptionByUser = Util.getIntFromKeyboard(true, false);
+			choosenOptionByUser = Util.getIntFromKeyboard(menu, true, false);
 			switch (choosenOptionByUser) {
 			case 1:
 				TextInterface.showProductMenu(app);
@@ -52,7 +50,7 @@ public class TextInterface {
 			System.out.println("-------------------------------------------------------------------------");
 			System.out.println(menuShelf);
 
-			choosenOptionByUser = Util.getIntFromKeyboard(true, false);
+			choosenOptionByUser = Util.getIntFromKeyboard(menuShelf,true, false);
 
 			switch (choosenOptionByUser) {
 			case 1:
@@ -93,8 +91,7 @@ public class TextInterface {
 			System.out.println("-------------------------------------------------------------------------");
 			ProductService.showProducts(app);
 			System.out.println("-------------------------------------------------------------------------");
-			System.out.println(menuProduct);
-			choosenOptionByUser = Util.getIntFromKeyboard(true, false);
+			choosenOptionByUser = Util.getIntFromKeyboard(menuProduct, true, false);
 
 			if (choosenOptionByUser >= 1 && choosenOptionByUser <= 5) {
 				switch (choosenOptionByUser) {
