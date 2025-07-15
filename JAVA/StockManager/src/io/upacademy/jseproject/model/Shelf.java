@@ -15,10 +15,6 @@ public class Shelf {
 		return ID;
 	}
 
-	public void setID(int iD) {
-		this.ID = iD;
-	}
-
 	public Product getProduto() {
 		return product;
 	}

@@ -22,10 +22,6 @@ public class Product {
 		return ID;
 	}
 	
-	public void setID(int iD) {
-		ID = iD;
-	}
-	
 	public List<Shelf> getShelves() {
 		return shelves;
 	}

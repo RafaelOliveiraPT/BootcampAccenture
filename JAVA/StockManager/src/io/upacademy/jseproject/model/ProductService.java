@@ -7,7 +7,7 @@ import io.upacademy.jseproject.utilities.Util;
 
 public class ProductService {
 
-	static void createProduct(RunApp app) {
+	public static void createProduct(RunApp app) {
 		Product newProduct = new Product();
 		int auxInt;
 		double auxDouble;
@@ -58,7 +58,7 @@ public class ProductService {
 		productsList.add(newProduct);
 	}
 	
-	static void editProduct(RunApp app) {
+	public static void editProduct(RunApp app) {
 		int auxInt;
 		Product auxProduct;
 
@@ -78,7 +78,6 @@ public class ProductService {
 	
 	static void editProductHelper(Product product, RunApp app) {
 		ArrayList <Shelf> shelvesList = app.getShelvesList();
-		ArrayList <Product> productsList = app.getProductsList();
 		Scanner reader = app.getReader();
 		String auxStr;
 		Double auxDouble = 0.0;
@@ -139,28 +138,8 @@ public class ProductService {
 			}
 		}
 	}
-	
-	static void consultProductDetails(RunApp app) {
-		int auxInt;
-		Product auxProduct;
 
-		System.out.print("Insira o ID do produto:");
-		auxInt = Util.getIntFromKeyboard(true, false);
-		if (auxInt >= 0) {
-			auxProduct = getProduct(auxInt, app);
-			if (auxProduct != null) {
-				System.out.println("-------------------------------------------------------------------------");
-				auxProduct.showProduct();
-				System.out.println("-------------------------------------------------------------------------");
-			} else {
-				System.out.println("Não existe nenhum produto com esse ID");
-			}
-		} else {
-			System.out.println("O ID tem que ser um número positivo.");
-		}
-	}
-
-	static void removeProduct(RunApp app) {
+	public static void removeProduct(RunApp app) {
 		int auxInt;
 		Product auxProduct;
 
@@ -191,7 +170,7 @@ public class ProductService {
 		return null;
 	}
 	
-	static void showProducts(RunApp app) {
+	public static void showProducts(RunApp app) {
 		ArrayList<Product> productsList = app.getProductsList();
 		System.out.println("Lista dos produtos existentes:");
 		for (Product product : productsList) {
@@ -206,5 +185,26 @@ public class ProductService {
 			System.out.println(shelf.getID());
 		}
 		System.out.println("-----------------------------------");
+	}
+	
+	
+	public static void consultProductDetails(RunApp app) {
+		int auxInt;
+		Product auxProduct;
+
+		System.out.print("Insira o ID do produto:");
+		auxInt = Util.getIntFromKeyboard(true, false);
+		if (auxInt >= 0) {
+			auxProduct = getProduct(auxInt, app);
+			if (auxProduct != null) {
+				System.out.println("-------------------------------------------------------------------------");
+				auxProduct.showProduct();
+				System.out.println("-------------------------------------------------------------------------");
+			} else {
+				System.out.println("Não existe nenhum produto com esse ID");
+			}
+		} else {
+			System.out.println("O ID tem que ser um número positivo.");
+		}
 	}
 }
