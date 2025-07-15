@@ -18,10 +18,11 @@ public class Util {
 		return auxStr;
 	}
 	
+	//retorna -9999 quando o utilizador não introduzir texto
 	public static int getIntFromKeyboard(boolean onlyPositive, boolean emptyLine) {
 		int auxInt = -9999;
 		String auxStr;
-		while(auxInt < 0) {
+		while(true) {
 			auxStr = reader.nextLine();
 			try {
 				if(emptyLine && auxStr.isEmpty()) {
@@ -30,7 +31,7 @@ public class Util {
 				auxInt = Integer.parseInt(auxStr);
 				if (onlyPositive && auxInt < 0) {
 					System.out.println("Introduza um valor positivo:");
-				} else if (!onlyPositive) {
+				} else  {
 					break;
 				}
 			} catch (Exception e) {
@@ -40,10 +41,11 @@ public class Util {
 		return auxInt;
 	}
 	
+	//retorna -9999 quando o utilizador não introduzir texto
 	public static double getDoubleFromKeyboard(boolean onlyPositive, boolean emptyLine) {
 		double auxDouble = -9999;
 		String auxStr;
-		while(auxDouble < 0) {
+		while(true) {
 			auxStr = reader.nextLine();
 			try {
 				if(emptyLine && auxStr.isEmpty()) {
@@ -52,7 +54,7 @@ public class Util {
 				auxDouble = Double.parseDouble(auxStr);
 				if (onlyPositive && auxDouble < 0) {
 					System.out.println("Introduza um valor positivo:");
-				} else if (!onlyPositive) {
+				} else  {
 					break;
 				}
 			} catch (Exception e) {
