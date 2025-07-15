@@ -1,4 +1,4 @@
-package pt.upacademy.stockmanager;
+package io.upacademy.jseproject.model;
 
 public class Shelf {
 	private int ID;

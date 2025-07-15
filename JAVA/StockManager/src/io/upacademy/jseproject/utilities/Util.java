@@ -1,4 +1,4 @@
-package pt.academy.utilities;
+package io.upacademy.jseproject.utilities;
 
 import java.util.Scanner;
 

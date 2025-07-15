@@ -1,6 +1,9 @@
-package pt.upacademy.stockmanager;
+package io.upacademy.jseproject.test;
 
 import java.util.ArrayList;
+
+import io.upacademy.jseproject.model.Product;
+import io.upacademy.jseproject.model.Shelf;
 
 public class SampleData {	
 	

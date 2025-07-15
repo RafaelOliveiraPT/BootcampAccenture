@@ -1,9 +1,13 @@
-package pt.upacademy.stockmanager;
+package io.upacademy.jseproject;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import pt.academy.utilities.Util;
+import io.upacademy.jseproject.model.Product;
+import io.upacademy.jseproject.model.Shelf;
+import io.upacademy.jseproject.test.SampleData;
+import io.upacademy.jseproject.textinterface.Interface;
+import io.upacademy.jseproject.utilities.Util;
 
 public class App {
 	private ArrayList<Product> productsList = new ArrayList<Product>();
@@ -33,15 +37,12 @@ public class App {
 	}
 
 	private void showMenu() {
-		String menu = "Por favor selecione uma das seguintes opções:\n" + "1) Listar produtos\n"
-				+ "2) Listar prateleiras\n" + "3) Sair";
-
 		boolean showMenuOption = true;
 		Scanner reader = new Scanner(System.in);
 		int choosenOptionByUser = -1;
 
 		do {
-			System.out.println(menu);
+			Interface.showMenu();
 			choosenOptionByUser = Util.getIntFromKeyboard(true, false);
 			switch (choosenOptionByUser) {
 			case 1:
@@ -63,19 +64,14 @@ public class App {
 	}
 
 	private void showShelfMenu() {
-		String menuShelf = "Por favor selecione uma das seguintes opções:\n" + "1) Criar nova prateleira\n"
-				+ "2) Editar uma prateleira existente\n" + "3) Consultar o detalhe de uma prateleira\n"
-				+ "4) Remover uma prateleira\n" + "5) Voltar ao ecrã anterior";
-
 		boolean showMenuOption = true;
-
 		int choosenOptionByUser = -1;
 
 		do {
 			System.out.println("-------------------------------------------------------------------------");
 			showShelves();
 			System.out.println("-------------------------------------------------------------------------");
-			System.out.println(menuShelf);
+			Interface.showShelfMenu();
 
 			choosenOptionByUser = Util.getIntFromKeyboard(true, false);
 
@@ -251,10 +247,6 @@ public class App {
 	}
 
 	private void showProductMenu() {
-		String menuProduct = "Por favor selecione uma das seguintes opções:\n" + "1) Criar novo produto\n"
-				+ "2) Editar um produto existente\n" + "3) Consultar o detalhe de um produto\n"
-				+ "4) Remover um produto\n" + "5) Voltar ao ecrã anterior";
-
 		boolean showMenuOption = true;
 		int choosenOptionByUser = -1;
 
@@ -262,8 +254,7 @@ public class App {
 			System.out.println("-------------------------------------------------------------------------");
 			showProducts();
 			System.out.println("-------------------------------------------------------------------------");
-			System.out.println(menuProduct);
-
+			Interface.showProductMenu();
 			choosenOptionByUser = Util.getIntFromKeyboard(true, false);
 
 			if (choosenOptionByUser >= 1 && choosenOptionByUser <= 5) {

@@ -1,4 +1,4 @@
-package pt.upacademy.stockmanager;
+package io.upacademy.jseproject.model;
 
 import java.util.ArrayList;
 import java.util.List;
