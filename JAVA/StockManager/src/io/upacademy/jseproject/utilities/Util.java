@@ -19,14 +19,14 @@ public class Util {
 	}
 	
 	//retorna -9999 quando o utilizador não introduzir texto
-	public static int getIntFromKeyboard(String text, boolean onlyPositive, boolean emptyLine) {
+	public static int getIntFromKeyboard(String text, boolean onlyPositive, boolean acceptEmptyLine) {
 		int auxInt = -9999;
 		String auxStr;
 		System.out.println(text);
 		while(true) {
 			auxStr = reader.nextLine();
 			try {
-				if(emptyLine && auxStr.isEmpty()) {
+				if(acceptEmptyLine && auxStr.isEmpty()) {
 					break;
 				}
 				auxInt = Integer.parseInt(auxStr);
@@ -43,14 +43,14 @@ public class Util {
 	}
 	
 	//retorna -9999 quando o utilizador não introduzir texto
-	public static double getDoubleFromKeyboard(String text, boolean onlyPositive, boolean emptyLine) {
+	public static double getDoubleFromKeyboard(String text, boolean onlyPositive, boolean acceptEmptyLine) {
 		double auxDouble = -9999;
 		String auxStr;
 		System.out.println(text);
 		while(true) {
 			auxStr = reader.nextLine();
 			try {
-				if(emptyLine && auxStr.isEmpty()) {
+				if(acceptEmptyLine && auxStr.isEmpty()) {
 					break;
 				}
 				auxDouble = Double.parseDouble(auxStr);
