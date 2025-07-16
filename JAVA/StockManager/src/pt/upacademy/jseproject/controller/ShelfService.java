@@ -1,21 +1,28 @@
-package io.upacademy.jseproject.model;
+package pt.upacademy.jseproject.controller;
 
-import java.util.ArrayList;
-
-import io.upacademy.jseproject.utilities.Util;
+import pt.upacademy.jseproject.model.Product;
+import pt.upacademy.jseproject.model.Shelf;
+import pt.upacademy.jseproject.repositories.ProductRepository;
+import pt.upacademy.jseproject.repositories.ShelfRepository;
+import pt.upacademy.jseproject.utilities.Util;
 
 public class ShelfService {
-
-	public static void createShelf(RunApp app) {
+	private ProductRepository productRepository;
+	private ShelfRepository shelfRepository;
+	
+	public ShelfService() {
+		productRepository = ProductRepository.getInstance();
+		shelfRepository = ShelfRepository.getInstance();
+	}
+	
+	public void createShelf() {
 		Shelf newShelf = new Shelf();
 		Product auxProduct;
-		ArrayList <Shelf> shelvesList = app.getShelvesList();
-		ArrayList <Product> productsList = app.getProductsList();
 
-		if (productsList.size() != 0) {
+		if (productRepository.size() != 0) {
 			// obter o id para produto
 			while (true) {
-				auxProduct = ProductService.getProduct(Util.getIntFromKeyboard("Insira o ID do produto:", true, false), app);
+				auxProduct = productRepository.get(Util.getIntFromKeyboard("Insira o ID do produto:", true, false));
 				if (auxProduct != null) {
 					newShelf.setProduto(auxProduct);
 					newShelf.setCapacity(0);
@@ -29,29 +36,28 @@ public class ShelfService {
 		
 		// obter o valor para o atributo diariaAluguer
 		newShelf.setDiariaAluguer(Util.getDoubleFromKeyboard("Introduza um preço para a diária do aluguer:", true, false));
-		shelvesList.add(newShelf);
+		shelfRepository.add(newShelf);
 	}
 
-	public static void editShelf(RunApp app) {
+	public void editShelf() {
 		Shelf auxPrateleira;
 
-		auxPrateleira = getShelf(Util.getIntFromKeyboard("Insira o ID do prateleira:", true, false), app);
+		auxPrateleira = shelfRepository.get(Util.getIntFromKeyboard("Insira o ID do prateleira:", true, false));
 		if (auxPrateleira != null) {
-			editShelftHelper(auxPrateleira, app);
+			editShelftHelper(auxPrateleira);
 		} else {
 			System.out.println("Não existe nenhum produto com esse ID");
 		}
 	}
 
 	// editar prateleira
-	private static void editShelftHelper(Shelf shelf, RunApp app) {
+	private void editShelftHelper(Shelf shelf) {
 		int auxInt;
 		double auxDouble;
 		Product auxProduct;
-		ArrayList <Product> productsList = app.getProductsList();
 
 		// se não houver produtos não vale a pena pedir o capacity e o produto
-		if (productsList.size() != 0) {
+		if (productRepository.size() != 0) {
 			shelf.setCapacity(1);
 
 			// mostra o produto que esta a ocupar a prateleira
@@ -69,7 +75,7 @@ public class ShelfService {
 				if (auxInt == -1) {
 					break;
 				}
-				auxProduct = ProductService.getProduct(auxInt, app);
+				auxProduct = productRepository.get(auxInt);
 				if (auxProduct != null) {
 					shelf.setProduto(auxProduct);
 					auxProduct.addPrateleira(shelf);
@@ -92,16 +98,16 @@ public class ShelfService {
 		}
 	}
 
-	public static void consultShelfDetails(RunApp app) {
+	public void consultShelfDetails() {
 		int auxInt;
 		Shelf auxShelf;
 
 		auxInt = Util.getIntFromKeyboard("Insira o ID da prateleira:", true, false);
 		if (auxInt >= 0) {
-			auxShelf = getShelf(auxInt,app);
+			auxShelf = shelfRepository.get(auxInt);
 			if (auxShelf != null) {
 				System.out.println("Prateleira:");
-				System.out.println("ID=" + auxShelf.getID());
+				System.out.println("ID=" + auxShelf.getId());
 				System.out.println("Capacity=" + auxShelf.getCapacity());
 				if (auxShelf.getCapacity() == 0) {
 					System.out.println("A prateleira contêm=" + auxShelf.getProduto().getName());
@@ -117,20 +123,19 @@ public class ShelfService {
 		}
 	}
 
-	public static void removeShelf(RunApp app) {
+	public void removeShelf() {
 		int auxInt;
 		Shelf auxShelf;
-		ArrayList <Shelf> shelvesList = app.getShelvesList();
 
 		auxInt = Util.getIntFromKeyboard("Insira o ID da prateleira:", true, false);
 		if (auxInt >= 0) {
-			auxShelf = getShelf(auxInt, app);
+			auxShelf = shelfRepository.get(auxInt);
 			if (auxShelf != null) {
 				if (auxShelf.getProduto() != null) {
 					auxShelf.getProduto().removeShelf(auxShelf);
 					auxShelf.setProduto(null);
 				}
-				shelvesList.remove(auxShelf);
+				shelfRepository.remove(auxShelf.getId());
 			} else {
 				System.out.println("Não existe nenhum produto com esse ID");
 			}
@@ -139,21 +144,11 @@ public class ShelfService {
 		}
 	}
 
-	public static void showShelves(RunApp app) {
-		ArrayList <Shelf> shelvesList = app.getShelvesList();
+	public void showShelves() {
 		System.out.println("Lista das prateleiras existentes:");
-		for (Shelf shelf : shelvesList) {
+		for (Shelf shelf : shelfRepository.getAll()) {
 			shelf.showShelf();
 		}
 	}
 	
-	private static Shelf getShelf(int ID, RunApp app) {
-		ArrayList<Shelf> shelvesList = app.getShelvesList();
-		for (Shelf shelf : shelvesList) {
-			if (shelf.getID() == ID) {
-				return shelf;
-			}
-		}
-		return null;
-	}
 }

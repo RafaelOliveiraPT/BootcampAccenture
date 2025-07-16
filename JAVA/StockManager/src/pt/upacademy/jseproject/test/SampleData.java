@@ -1,13 +1,22 @@
-package io.upacademy.jseproject.test;
+package pt.upacademy.jseproject.test;
 
 import java.util.ArrayList;
 
-import io.upacademy.jseproject.model.Product;
-import io.upacademy.jseproject.model.Shelf;
+import pt.upacademy.jseproject.model.Product;
+import pt.upacademy.jseproject.model.Shelf;
+import pt.upacademy.jseproject.repositories.ProductRepository;
+import pt.upacademy.jseproject.repositories.ShelfRepository;
 
-public class SampleData {	
+public class SampleData {
+	private ProductRepository productRepository;
+	private ShelfRepository shelfRepository;
 	
-	public static ArrayList<Product> getSampleDataProducts(){
+	public SampleData() {
+		productRepository = ProductRepository.getInstance();
+		shelfRepository = ShelfRepository.getInstance();
+	}
+	
+	private ArrayList<Product> getSampleDataProducts(){
 		ArrayList<Product> dataSampleProductsList = new ArrayList<Product>(); 
 		// dados para teste
 		Product a1 = new Product();
@@ -48,7 +57,7 @@ public class SampleData {
 		return dataSampleProductsList;
 	}
 	
-	public static ArrayList<Shelf> getSampleDataShelves(){
+	private ArrayList<Shelf> getSampleDataShelves(){
 		ArrayList<Shelf> dataSampleShelvesList = new ArrayList<Shelf>();
 		Shelf p1 = new Shelf();
 		p1.setCapacity(1);
@@ -75,5 +84,14 @@ public class SampleData {
 		dataSampleShelvesList.add(p5);
 		
 		return dataSampleShelvesList;
+	}
+	
+	public void loadSampleData() {
+		for (Product product : getSampleDataProducts()) {
+			productRepository.add(product);
+		}
+		for (Shelf shelf : getSampleDataShelves()) {
+			shelfRepository.add(shelf);
+		}
 	}
 }

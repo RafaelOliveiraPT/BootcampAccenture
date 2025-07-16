@@ -1,26 +1,20 @@
-package io.upacademy.jseproject.model;
+package pt.upacademy.jseproject.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Product {
+public class Product extends MyEntity {
 
-	private long ID;
-	private static long globalID = 0;
-	private ArrayList<Shelf> shelves;
+	private List<Shelf> shelves;
 	private String name;
 	private double discount;
 	private double iva;
 	private double pvp;
 	
 	public Product() {
-		this.ID = globalID++;
 		this.shelves = new ArrayList<Shelf>();
 	}
 	
-	public long getID() {
-		return ID;
-	}
 	
 	public List<Shelf> getShelves() {
 		return shelves;
@@ -73,10 +67,10 @@ public class Product {
 
 	public void showProduct() {
 		StringBuilder auxStr = new StringBuilder();
-		shelves.sort((a,b) -> { return (a.getID() < b.getID() ? -1 : 1);});
-		auxStr.append("Produto [ID=" + ID + ", name=" + name + ", pvp=" + pvp + ", iva=" + iva +", discount=" + discount + ", shelves=" );  
+		shelves.sort((a,b) -> { return (a.getId() < b.getId() ? -1 : 1);});
+		auxStr.append("Produto [ID=" + getId() + ", name=" + name + ", pvp=" + pvp + ", iva=" + iva +", discount=" + discount + ", shelves=" );  
 		for (Shelf shelf : shelves) {
-			auxStr.append("[" + shelf.getID() + "] ");
+			auxStr.append("[" + shelf.getId() + "] ");
 		} 
 		auxStr.append("]");
 		System.out.println(auxStr);

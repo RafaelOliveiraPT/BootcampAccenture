@@ -1,4 +1,4 @@
-package io.upacademy.jseproject.test;
+package pt.upacademy.jseproject.test;
 
 /*
 import org.junit.Assert;

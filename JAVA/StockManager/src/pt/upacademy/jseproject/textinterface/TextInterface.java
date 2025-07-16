@@ -1,15 +1,18 @@
-package io.upacademy.jseproject.textinterface;
+package pt.upacademy.jseproject.textinterface;
 
 import java.util.Scanner;
 
-import io.upacademy.jseproject.model.ProductService;
-import io.upacademy.jseproject.model.RunApp;
-import io.upacademy.jseproject.model.ShelfService;
-import io.upacademy.jseproject.utilities.Util;
+import pt.upacademy.jseproject.controller.ProductService;
+import pt.upacademy.jseproject.controller.ShelfService;
+import pt.upacademy.jseproject.utilities.Util;
 
 public class TextInterface {
-
-	public static void showMenu(RunApp app) {
+	
+	final static public ProductService productService = new ProductService();
+	final static public ShelfService shelfService = new ShelfService();
+	
+	
+	public void showMenu() {
 		String menu = "Por favor selecione uma das seguintes opções:\n" + "1) Listar produtos\n"
 				+ "2) Listar prateleiras\n" + "3) Sair";
 
@@ -20,10 +23,10 @@ public class TextInterface {
 			choosenOptionByUser = Util.getIntFromKeyboard(menu, true, false);
 			switch (choosenOptionByUser) {
 			case 1:
-				TextInterface.showProductMenu(app);
+				showProductMenu();
 				break;
 			case 2:
-				TextInterface.showShelfMenu(app);
+				showShelfMenu();
 				break;
 			case 3:
 				showMenuOption = false;
@@ -37,7 +40,7 @@ public class TextInterface {
 		reader.close();
 	}
 
-	public static void showShelfMenu(RunApp app) {
+	public void showShelfMenu() {
 		String menuShelf = "Por favor selecione uma das seguintes opções:\n" + "1) Criar nova prateleira\n"
 				+ "2) Editar uma prateleira existente\n" + "3) Consultar o detalhe de uma prateleira\n"
 				+ "4) Remover uma prateleira\n" + "5) Voltar ao ecrã anterior";
@@ -46,7 +49,7 @@ public class TextInterface {
 
 		do {
 			System.out.println("-------------------------------------------------------------------------");
-			ShelfService.showShelves(app);
+			shelfService.showShelves();
 			System.out.println("-------------------------------------------------------------------------");
 			System.out.println(menuShelf);
 
@@ -55,19 +58,19 @@ public class TextInterface {
 			switch (choosenOptionByUser) {
 			case 1:
 				// criar nova prateleira
-				ShelfService.createShelf(app);
+				shelfService.createShelf();
 				break;
 			case 2:
 				// editar um produto existente
-				ShelfService.editShelf(app);
+				shelfService.editShelf();
 				break;
 			case 3:
 				// consultar o detalhe de um produto
-				ShelfService.consultShelfDetails(app);
+				shelfService.consultShelfDetails();
 				break;
 			case 4:
 				// remover um produto
-				ShelfService.removeShelf(app);
+				shelfService.removeShelf();
 				break;
 			case 5:
 				// voltar ao ecra anterior
@@ -80,7 +83,7 @@ public class TextInterface {
 		} while (showMenuOption);
 	}
 
-	public static void showProductMenu(RunApp app) {
+	public void showProductMenu() {
 		boolean showMenuOption = true;
 		int choosenOptionByUser = -1;
 		String menuProduct = "Por favor selecione uma das seguintes opções:\n" + "1) Criar novo produto\n"
@@ -89,7 +92,7 @@ public class TextInterface {
 
 		do {
 			System.out.println("-------------------------------------------------------------------------");
-			ProductService.showProducts(app);
+			productService.showProducts();
 			System.out.println("-------------------------------------------------------------------------");
 			choosenOptionByUser = Util.getIntFromKeyboard(menuProduct, true, false);
 
@@ -97,19 +100,19 @@ public class TextInterface {
 				switch (choosenOptionByUser) {
 				case 1:
 					// criar novo produto
-					ProductService.createProduct(app);
+					productService.createProduct();
 					break;
 				case 2:
 					// editar um produto existente
-					ProductService.editProduct(app);
+					productService.editProduct();
 					break;
 				case 3:
 					// consultar o detalhe de um produto
-					ProductService.consultProductDetails(app);
+					productService.consultProductDetails();
 					break;
 				case 4:
 					// remover um produto
-					ProductService.removeProduct(app);
+					productService.removeProduct();
 					break;
 				case 5:
 					// voltar ao ecra anterior

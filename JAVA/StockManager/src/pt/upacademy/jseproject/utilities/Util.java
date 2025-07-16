@@ -1,17 +1,20 @@
-package io.upacademy.jseproject.utilities;
+package pt.upacademy.jseproject.utilities;
 
 import java.util.Scanner;
 
 public class Util {
 
-	public static Scanner reader = new Scanner(System.in);
+	private static Scanner reader = new Scanner(System.in);
 	
-	public static String getLineFromKeyboard() {
+	public static String getLineFromKeyboard(boolean acceptEmptyLine) {
 		String auxStr;
 		
 		while(true) {
 			auxStr = reader.nextLine();
-			if(auxStr.length() != 0)
+			if(acceptEmptyLine) {
+				break;
+			}
+			else if(auxStr.length() != 0)
 				break;
 			System.out.print("Tem que inserir um valor...");
 		}	

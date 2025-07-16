@@ -1,18 +1,11 @@
-package io.upacademy.jseproject.model;
+package pt.upacademy.jseproject.model;
 
-public class Shelf {
-	private int ID;
-	private static int globalID = 0;
+public class Shelf extends MyEntity{
 	private Product product;
 	private int capacity = 1;
 	private double diariaAluguer;
 
 	public Shelf() {
-		this.ID = globalID++;
-	}
-
-	public int getID() {
-		return ID;
 	}
 
 	public Product getProduto() {
@@ -47,7 +40,7 @@ public class Shelf {
 	public void showShelf() {
 		StringBuilder auxStr = new StringBuilder();
 		auxStr.append("Prateleira:\n");
-		auxStr.append("ID=" + this.ID + "\n");
+		auxStr.append("ID=" + getId() + "\n");
 		auxStr.append("Capacity=" + this.capacity + "\n");
 		if(this.product != null) {
 			auxStr.append("Produto:\n");
