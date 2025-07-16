@@ -6,8 +6,9 @@ import pt.upacademy.jseproject.textinterface.TextInterface;
 public class App {
 
 	public static void main(String args[]) {
-		new SampleData().loadSampleData();
 		TextInterface ti = new TextInterface();
+		//carrega dados dummie
+		new SampleData().loadSampleData();
 		ti.showMenu();
 	}
 }
