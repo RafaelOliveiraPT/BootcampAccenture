@@ -25,7 +25,7 @@ public class Util {
 	public static int getIntFromKeyboard(String text, boolean onlyPositive, boolean acceptEmptyLine) {
 		int auxInt = -9999;
 		String auxStr;
-		System.out.println(text);
+		System.out.print(text);
 		while(true) {
 			auxStr = reader.nextLine();
 			try {
@@ -49,7 +49,7 @@ public class Util {
 	public static double getDoubleFromKeyboard(String text, boolean onlyPositive, boolean acceptEmptyLine) {
 		double auxDouble = -9999;
 		String auxStr;
-		System.out.println(text);
+		System.out.print(text);
 		while(true) {
 			auxStr = reader.nextLine();
 			try {

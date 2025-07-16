@@ -78,7 +78,6 @@ public class ProductService {
 		auxStr = Util.getLineFromKeyboard(true);
 		if (!auxStr.isEmpty()) {
 			product.setName(auxStr);
-			System.out.println("diz que a string tem conteudo");
 		}
 
 		// change discount
