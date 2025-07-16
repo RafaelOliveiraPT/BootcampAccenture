@@ -1,7 +1,5 @@
-package pt.upacademy.jseproject.controller;
+package pt.upacademy.jseproject.model;
 
-import pt.upacademy.jseproject.model.Product;
-import pt.upacademy.jseproject.model.Shelf;
 import pt.upacademy.jseproject.repositories.ProductRepository;
 import pt.upacademy.jseproject.repositories.ShelfRepository;
 import pt.upacademy.jseproject.utilities.Util;
@@ -34,7 +32,6 @@ public class ProductService {
 			if (auxInt == -1) {
 				break;
 			}
-
 			if (shelfRepository.get(auxInt) != null && shelfRepository.get(auxInt).getCapacity() == 1) {
 				shelfRepository.get(auxInt).setCapacity(0);
 				shelfRepository.get(auxInt).setProduto(newProduct);
@@ -45,7 +42,6 @@ public class ProductService {
 			} else if (shelfRepository.get(auxInt) == null) {
 				System.out.println("A prateleira que introduziu não é válida!");
 			}
-
 		}
 
 		newProduct.setDiscount(Util.getDoubleFromKeyboard("Insira o valor de desconto do produto:", true, false));
@@ -121,7 +117,6 @@ public class ProductService {
 					shelfRepository.get(auxInt).setCapacity(0);
 					shelfRepository.get(auxInt).setProduto(product);
 					product.addPrateleira(shelfRepository.get(auxInt));
-					break;
 				} else if (shelfRepository.get(auxInt) != null && shelfRepository.get(auxInt).getCapacity() == 0) {
 					System.out.println("A prateleira que introduziu já está ocupada!");
 				} else if (shelfRepository.get(auxInt) == null) {

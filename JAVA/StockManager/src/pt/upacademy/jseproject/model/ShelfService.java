@@ -1,7 +1,5 @@
-package pt.upacademy.jseproject.controller;
+package pt.upacademy.jseproject.model;
 
-import pt.upacademy.jseproject.model.Product;
-import pt.upacademy.jseproject.model.Shelf;
 import pt.upacademy.jseproject.repositories.ProductRepository;
 import pt.upacademy.jseproject.repositories.ShelfRepository;
 import pt.upacademy.jseproject.utilities.Util;

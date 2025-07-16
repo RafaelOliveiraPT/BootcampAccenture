@@ -2,8 +2,8 @@ package pt.upacademy.jseproject.textinterface;
 
 import java.util.Scanner;
 
-import pt.upacademy.jseproject.controller.ProductService;
-import pt.upacademy.jseproject.controller.ShelfService;
+import pt.upacademy.jseproject.model.ProductService;
+import pt.upacademy.jseproject.model.ShelfService;
 import pt.upacademy.jseproject.utilities.Util;
 
 public class TextInterface {
@@ -51,7 +51,6 @@ public class TextInterface {
 			System.out.println("-------------------------------------------------------------------------");
 			shelfService.showShelves();
 			System.out.println("-------------------------------------------------------------------------");
-			System.out.println(menuShelf);
 
 			choosenOptionByUser = Util.getIntFromKeyboard(menuShelf,true, false);
 
