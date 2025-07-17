@@ -10,10 +10,9 @@ import pt.upacademy.jseproject.model.MyEntity;
 public abstract class EntityRepository <T extends MyEntity> {
 	protected Map<Long, T> map = new HashMap<Long, T>();
 	protected long currentId = 0;
-	private static long globalID = 0;
 
 	private long getNextId() {
-		return globalID++;
+		return currentId+1;
 	}
 	
 	public T get(long id) {
@@ -28,11 +27,11 @@ public abstract class EntityRepository <T extends MyEntity> {
 		long nextId = getNextId();
 		t.setId(nextId);
 		map.put(nextId, t);
-		return ++currentId;
+		currentId = nextId;
+		return nextId;
 	}
 	
 	public void update(T t) {
-		t.setId(getNextId());
 		map.put(t.getId(), t);
 	}
 	

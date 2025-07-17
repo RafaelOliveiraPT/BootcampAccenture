@@ -66,10 +66,10 @@ public class Product extends MyEntity {
 
 	public void showProduct() {
 		StringBuilder auxStr = new StringBuilder();
-		shelves.sort((a,b) -> { return (a.getId() < b.getId() ? -1 : 1);});
-		auxStr.append("Produto [ID=" + getId() + ", name=" + name + ", pvp=" + pvp + ", iva=" + iva +", discount=" + discount + ", shelves=" );  
+		shelves.sort((a,b) -> { return (a.ID < b.ID ? -1 : 1);});
+		auxStr.append("Produto [ID=" + this.ID + ", name=" + name + ", pvp=" + pvp + ", iva=" + iva +", discount=" + discount + ", shelves=" );  
 		for (Shelf shelf : shelves) {
-			auxStr.append("[" + shelf.getId() + "] ");
+			auxStr.append("[" + shelf.ID + "] ");
 		} 
 		auxStr.append("]");
 		System.out.println(auxStr);

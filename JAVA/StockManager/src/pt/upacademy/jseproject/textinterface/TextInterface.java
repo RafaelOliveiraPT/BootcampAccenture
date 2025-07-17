@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import pt.upacademy.jseproject.model.ProductService;
 import pt.upacademy.jseproject.model.ShelfService;
+import pt.upacademy.jseproject.test.SampleData;
 import pt.upacademy.jseproject.utilities.Util;
 
 public class TextInterface {
@@ -11,6 +12,12 @@ public class TextInterface {
 	final static public ProductService productService = new ProductService();
 	final static public ShelfService shelfService = new ShelfService();
 	
+	public static void main(String args[]) {
+		TextInterface ti = new TextInterface();
+		//carrega dados dummie
+		new SampleData().loadSampleData();
+		ti.showMenu();
+	}
 	
 	public void showMenu() {
 		String menu = "Por favor selecione uma das seguintes opções:\n" + "1) Listar produtos\n"

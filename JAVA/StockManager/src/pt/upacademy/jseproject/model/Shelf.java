@@ -40,7 +40,7 @@ public class Shelf extends MyEntity{
 	public void showShelf() {
 		StringBuilder auxStr = new StringBuilder();
 		auxStr.append("Prateleira:\n");
-		auxStr.append("ID=" + getId() + "\n");
+		auxStr.append("ID=" + this.ID + "\n");
 		auxStr.append("Capacity=" + this.capacity + "\n");
 		if(this.product != null) {
 			auxStr.append("Produto:\n");
