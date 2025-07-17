@@ -87,11 +87,7 @@ public class SampleData {
 	}
 	
 	public void loadSampleData() {
-		for (Product product : getSampleDataProducts()) {
-			productRepository.add(product);
-		}
-		for (Shelf shelf : getSampleDataShelves()) {
-			shelfRepository.add(shelf);
-		}
+		getSampleDataProducts().forEach(product -> productRepository.add(product));
+		getSampleDataShelves().forEach(shelf -> shelfRepository.add(shelf));
 	}
 }

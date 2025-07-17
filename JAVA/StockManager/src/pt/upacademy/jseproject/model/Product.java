@@ -15,7 +15,6 @@ public class Product extends MyEntity {
 		this.shelves = new ArrayList<Shelf>();
 	}
 	
-	
 	public List<Shelf> getShelves() {
 		return shelves;
 	}
