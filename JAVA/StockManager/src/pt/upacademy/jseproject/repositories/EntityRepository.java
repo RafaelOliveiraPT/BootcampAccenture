@@ -5,9 +5,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import pt.upacademy.jseproject.model.MyEntity;
+import pt.upacademy.jseproject.repositories.interfaces.EntityRepositoryCRUD_Interface;
 
 
-public abstract class EntityRepository <T extends MyEntity> {
+public abstract class EntityRepository <T extends MyEntity> implements EntityRepositoryCRUD_Interface<T>{
 	protected Map<Long, T> map = new HashMap<Long, T>();
 	protected long currentId = 0;
 
@@ -32,14 +33,18 @@ public abstract class EntityRepository <T extends MyEntity> {
 	}
 	
 	public void update(T t) {
-		map.put(t.getId(), t);
+		if(map.get(t.getId()) != null) {
+			map.put(t.getId(), t);			
+		}
 	}
 	
 	public void remove(long id) {
 		map.remove(id);
 	}
 	
+	
 	public int size() {
 		return map.size();
 	}
+	
 }

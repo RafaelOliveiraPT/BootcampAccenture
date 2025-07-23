@@ -75,8 +75,12 @@ public class Product extends MyEntity {
 		System.out.println(auxStr);
 	}
 
-	public void removeShelf(Shelf shelf) {
-		shelves.remove(shelf);
+	public void removeShelf(long shelfId) {
+		for (Shelf shelf : shelves) {
+			if(shelf.getId() == shelfId) {
+				shelves.remove(shelf);
+			}
+		}
 	}
 }
 

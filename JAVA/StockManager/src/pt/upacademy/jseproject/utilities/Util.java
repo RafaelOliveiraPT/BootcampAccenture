@@ -25,7 +25,9 @@ public class Util {
 	public static int getIntFromKeyboard(String text, boolean onlyPositive, boolean acceptEmptyLine) {
 		int auxInt = -9999;
 		String auxStr;
-		System.out.print(text);
+		if(text != null) {
+			System.out.print(text);			
+		}
 		while(true) {
 			auxStr = reader.nextLine();
 			try {

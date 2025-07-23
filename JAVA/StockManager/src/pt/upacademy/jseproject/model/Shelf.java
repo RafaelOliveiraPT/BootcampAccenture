@@ -8,12 +8,12 @@ public class Shelf extends MyEntity{
 	public Shelf() {
 	}
 
-	public Product getProduto() {
+	public Product getProduct() {
 		return product;
 	}
 
-	public void setProduto(Product produto) {
-		this.product = produto;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public double getDiariaAluguer() {
@@ -39,9 +39,11 @@ public class Shelf extends MyEntity{
 
 	public void showShelf() {
 		StringBuilder auxStr = new StringBuilder();
-		auxStr.append("Prateleira:\n");
-		auxStr.append("ID=" + this.ID + "\n");
-		auxStr.append("Capacity=" + this.capacity + "\n");
+		auxStr.append("Prateleira " + this.ID + "\n");
+		auxStr.append("Diaria de aluguer: " + this.diariaAluguer + "\n");
+		if(this.capacity == 1) {
+			auxStr.append("Prateleira está vazia \n");			
+		}
 		if(this.product != null) {
 			auxStr.append("Produto:\n");
 			auxStr.append(product.getName()+ "\n");

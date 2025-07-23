@@ -2,113 +2,60 @@ package pt.upacademy.jseproject.model;
 
 import pt.upacademy.jseproject.repositories.ProductRepository;
 import pt.upacademy.jseproject.repositories.ShelfRepository;
-import pt.upacademy.jseproject.utilities.Util;
 
 public class ShelfService {
 	private ProductRepository productRepository;
 	private ShelfRepository shelfRepository;
-	
+
 	public ShelfService() {
 		productRepository = ProductRepository.getInstance();
 		shelfRepository = ShelfRepository.getInstance();
 	}
-	
-	public void createShelf() {
+
+	public void createShelf(long productId, double diariaAluguer) {
 		Shelf newShelf = new Shelf();
 		Product auxProduct;
 
-		if (productRepository.size() != 0) {
-			// obter o id para produto
-			while (true) {
-				auxProduct = productRepository.get(Util.getIntFromKeyboard("Insira o ID do produto:", true, false));
-				if (auxProduct != null) {
-					newShelf.setProduto(auxProduct);
-					newShelf.setCapacity(0);
-					auxProduct.addPrateleira(newShelf);
-					break;
-				} else {
-					System.out.println("Não existe nenhum produto com esse ID");
-				}
-			}
-		}
-		
-		// obter o valor para o atributo diariaAluguer
-		newShelf.setDiariaAluguer(Util.getDoubleFromKeyboard("Introduza um preço para a diária do aluguer:", true, false));
-		shelfRepository.add(newShelf);
-	}
-
-	public void editShelf() {
-		Shelf auxPrateleira;
-
-		auxPrateleira = shelfRepository.get(Util.getIntFromKeyboard("Insira o ID do prateleira:", true, false));
-		if (auxPrateleira != null) {
-			editShelftHelper(auxPrateleira);
+		auxProduct = productRepository.get(productId);
+		if (auxProduct != null) {
+			newShelf.setProduct(auxProduct);
+			newShelf.setCapacity(0);
+			auxProduct.addPrateleira(newShelf);
 		} else {
 			System.out.println("Não existe nenhum produto com esse ID");
 		}
+		// obter o valor para o atributo diariaAluguer
+		newShelf.setDiariaAluguer(diariaAluguer);
+		shelfRepository.add(newShelf);
 	}
 
-	// editar prateleira
-	private void editShelftHelper(Shelf shelf) {
-		int auxInt;
-		double auxDouble;
+	public void editShelf(long shelfId, long productId, double diariaAluguer) {
+		Shelf shelf = shelfRepository.get(shelfId);
 		Product auxProduct;
-
-		// se não houver produtos não vale a pena pedir o capacity e o produto
-		if (productRepository.size() != 0) {
-			shelf.setCapacity(1);
-
-			// mostra o produto que esta a ocupar a prateleira
-			if (shelf.getProduto() != null) {
-				System.out.println("Prateleira ocupada com o produto=" + shelf.getProduto().getName());
-			} else {
-				System.out.println("A prateleira está vazia.");
-			}
-			if (shelf.getProduto() != null) {
-				shelf.getProduto().removeShelf(shelf);
-			}
-			shelf.setProduto(null);
-			while (true) {
-				auxInt = Util.getIntFromKeyboard("Insira o numero do produto ou -1 p/ continuar:", false, false);
-				if (auxInt == -1) {
-					break;
-				}
-				auxProduct = productRepository.get(auxInt);
-				if (auxProduct != null) {
-					shelf.setProduto(auxProduct);
-					auxProduct.addPrateleira(shelf);
-					shelf.setCapacity(0);
-					break;
-				} else {
-					System.out.print("O ID não está associado a nenhum produto, introduza um novo ID:");
-				}
-			}
-
+		shelf.setCapacity(1);
+		shelf.setProduct(null);
+		auxProduct = productRepository.get(productId);
+		if (auxProduct != null) {
+			shelf.setProduct(auxProduct);
+			auxProduct.addPrateleira(shelf);
+			shelf.setCapacity(0);
 		} else {
-			System.out.println("capacity=" + shelf.getCapacity());
+			System.out.print("O ID não está associado a nenhum produto!");
 		}
-		System.out.print("valor atual diariaAluguer=" + shelf.getDiariaAluguer());
-
-		// obter o valor para o atributo diaria de aluguer
-		auxDouble = Util.getDoubleFromKeyboard(" Introduza um novo preço:", true, true);
-		if (auxDouble >= 0) {
-			shelf.setDiariaAluguer(auxDouble);
-		}
+		shelf.setDiariaAluguer(diariaAluguer);
 	}
 
-	public void consultShelfDetails() {
-		int auxInt;
+	
+	public void consultShelfDetails(long shelfId) {
 		Shelf auxShelf;
-
-		auxInt = Util.getIntFromKeyboard("Insira o ID da prateleira:", true, false);
-		if (auxInt >= 0) {
-			auxShelf = shelfRepository.get(auxInt);
+		
+		if (shelfId >= 0) {
+			auxShelf = shelfRepository.get(shelfId);
 			if (auxShelf != null) {
 				System.out.println("Prateleira:");
 				System.out.println("ID=" + auxShelf.getId());
-				System.out.println("Capacity=" + auxShelf.getCapacity());
 				if (auxShelf.getCapacity() == 0) {
-					System.out.println("A prateleira contêm=" + auxShelf.getProduto().getName());
+					System.out.println("A prateleira contêm=" + auxShelf.getProduct().getName());
 				} else {
 					System.out.println("A prateleira está vazia.");
 				}
@@ -121,21 +68,19 @@ public class ShelfService {
 		}
 	}
 
-	public void removeShelf() {
-		int auxInt;
+	public void removeShelf(long shelfId) {
 		Shelf auxShelf;
 
-		auxInt = Util.getIntFromKeyboard("Insira o ID da prateleira:", true, false);
-		if (auxInt >= 0) {
-			auxShelf = shelfRepository.get(auxInt);
+		if (shelfId >= 0) {
+			auxShelf = shelfRepository.get(shelfId);
 			if (auxShelf != null) {
-				if (auxShelf.getProduto() != null) {
-					auxShelf.getProduto().removeShelf(auxShelf);
-					auxShelf.setProduto(null);
+				if (auxShelf.getProduct() != null) {
+					auxShelf.getProduct().removeShelf(auxShelf.getId());
+					auxShelf.setProduct(null);
 				}
 				shelfRepository.remove(auxShelf.getId());
 			} else {
-				System.out.println("Não existe nenhum produto com esse ID");
+				System.out.println("Não existe nenhuma shelf com esse ID");
 			}
 		} else {
 			System.out.println("O ID tem que ser um número positivo.");
@@ -149,4 +94,21 @@ public class ShelfService {
 		}
 	}
 	
+	public Shelf getShelf(long shelfId) {
+		return shelfRepository.get(shelfId);
+	}
+	
+	public boolean existsProducts() {
+		if(productRepository.size() > 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	public void removeProductOfShelf(long shelfId) {
+		Shelf shelf = shelfRepository.get(shelfId);
+		shelf.setCapacity(1);
+		shelf.getProduct().removeShelf(shelfId);
+	}
 }
